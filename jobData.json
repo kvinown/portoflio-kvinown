@@ -1,0 +1,32 @@
+[
+	{
+		"role": "Design",
+		"description": "Create digital products unique ideas",
+		"product": "variabel product",
+		"logo": "<i class='fa-solid fa-pen'></i>"
+	},
+	{
+		"role": "Front-End Developer",
+		"description": "I develope front-end with coding super smooth",
+		"product": "variabel product",
+		"logo": "<i class='fa-solid fa-code'></i>"
+	},
+	{
+		"role": "Back-End Developer",
+		"description": "I develope back-end with coding super efficient",
+		"product": "variabel product",
+		"logo": "<i class='fa-solid fa-cloud'></i>"
+	},
+	{
+		"role": "Database Developer",
+		"description": "I make database with nice flowing",
+		"product": "variabel product",
+		"logo": "<i class='fa-solid fa-database'></i>"
+	},
+	{
+		"role": "Full-Stack Developer",
+		"description": "I develope full website with love",
+		"product": "variabel product",
+		"logo": "<i class='fa-regular fa-file-code'></i>"
+	}
+]

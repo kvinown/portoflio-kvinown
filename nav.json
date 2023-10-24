@@ -1,0 +1,24 @@
+{
+	"navItems": [
+		{
+			"text": "Home",
+			"link": "#",
+			"isActive": false
+		},
+		{
+			"text": "About",
+			"link": "#about",
+			"isActive": false
+		},
+		{
+			"text": "Skills",
+			"link": "#skill",
+			"isActive": false
+		},
+		{
+			"text": "Portfolio",
+			"link": "#portfolio",
+			"isActive": false
+		}
+	]
+}

@@ -1,0 +1,89 @@
+/* General */
+.page {
+	min-height: 100vh;
+}
+.f-3 {
+	font-size: 1.25rem;
+}
+.fs-6 {
+	font-size: 1rem !important;
+}
+.fs-7 {
+	font-size: 0.75rem !important;
+}
+.mh-200 {
+	min-height: 200px;
+}
+.mh-500 {
+	height: 500px;
+}
+.mh-800 {
+	height: 800px;
+}
+section {
+	height: auto;
+	min-height: 100vh;
+	padding: 5em 2em;
+}
+footer {
+	height: auto;
+	padding: 5em 2em;
+}
+/* Akhir General */
+/* ====================================================== */
+/* Navbar */
+.nav-height {
+	min-height: 60px !important;
+}
+.icon {
+	width: 50px;
+}
+.nav-width-icon {
+	width: 200px;
+	height: 40px;
+}
+.pas-foto {
+	border-radius: 5%;
+	vertical-align: middle;
+	width: 50%;
+	height: auto;
+}
+/* Akhir Navbar */
+/* ====================================================== */
+/* Hero Page */
+.hero-page {
+	min-height: calc(100vh - 60px) !important;
+}
+.hero-height {
+	min-height: 300px;
+}
+/* Akhir Hero */
+/* ====================================================== */
+/* Portfolio */
+.margin-iframe {
+	margin: 0 20px;
+}
+.img-hero {
+	text-align: right !important;
+}
+.text-hero {
+	text-align: left !important;
+}
+@media (max-width: 768px) {
+	.img-hero {
+		text-align: center !important;
+		margin-top: 10px !important;
+	}
+
+	.text-hero {
+		text-align: center !important;
+		margin-top: -150px !important;
+	}
+}
+
+/* Akhir portfolio */
+/* ====================================================== */
+/* footer */
+.margin-icon-footer {
+	margin-right: 55px;
+}

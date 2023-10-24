@@ -1,0 +1,24 @@
+{
+	"skills": [
+		{
+			"jenis": "Front-End",
+			"icon": ["fa-html5", "fa-css3", "fa-js", "fa-bootstrap"],
+			"nama": ["HTML", "CSS", "JavaScript", "Bootstrap"]
+		},
+		{
+			"jenis": "Back-End",
+			"icon": ["fa-php", "fa-js", "fa-laravel"],
+			"nama": ["PHP", "JavaScript", "Laravel"]
+		},
+		{
+			"jenis": "Database",
+			"icon": ["fa-cloudflare", "fa-microsoft"],
+			"nama": ["MySQL", "Microsoft SQL Server"]
+		},
+		{
+			"jenis": "Other",
+			"icon": ["fa-python", "fa-java"],
+			"nama": ["Python", "Java"]
+		}
+	]
+}
