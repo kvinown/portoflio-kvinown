@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Mail, Phone, MapPin, Globe, Server, Layout as LayoutIcon, Smartphone, Database, Wrench, ChevronRight, Send, Briefcase, Users, Download } from "lucide-react";
+
+// Import komponen pembantu dan animasi
 import { FadeInSection } from "../animations/FadeInSection";
 import { TechDivider } from "../components/TechDivider";
 import { GithubIcon, LinkedinIcon, InstagramIcon } from "../components/Icons";
@@ -41,12 +43,28 @@ export const HomePage = ({ t, c, theme, portofolioData }: any) => {
 
 	return (
 		<>
-			<header className={`relative overflow-hidden min-h-screen flex items-center pt-24 pb-12 transition-colors duration-300 ${c("bg-blue-50", "bg-slate-900")}`}>
-				<div className={`absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_bottom_left,_var(--tw-gradient-stops))] ${c("from-blue-300 via-transparent to-transparent", "from-blue-500 via-slate-800 to-transparent")}`}></div>
+			{/* HEADER / HERO SECTION DENGAN EFEK CAHAYA LOGIN */}
+			<header className={`relative overflow-hidden min-h-screen flex items-center pt-24 pb-12 transition-colors duration-300 ${c("bg-slate-50", "bg-slate-900")}`}>
+				{/* --- ANIMASI CAHAYA (GLOWING ORBS) --- */}
+				<div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+					{/* Cahaya Light Mode (Menyebar dari kanan atas ke seluruh layar) */}
+					<div
+						className={`absolute top-[-20%] right-[-10%] w-[50rem] h-[50rem] bg-blue-400/20 rounded-full blur-[100px] transition-all duration-1000 ease-in-out origin-center ${
+							theme === "light" ? "scale-100 opacity-100" : "scale-50 opacity-0"
+						}`}></div>
+
+					{/* Cahaya Dark Mode (Bisa diletakkan di kiri bawah agar menyilang) */}
+					<div
+						className={`absolute bottom-[-20%] left-[-10%] w-[50rem] h-[50rem] bg-blue-600/10 rounded-full blur-[100px] transition-all duration-1000 ease-in-out origin-center ${
+							theme === "dark" ? "scale-100 opacity-100" : "scale-50 opacity-0"
+						}`}></div>
+				</div>
+
 				<div className="max-w-6xl mx-auto px-6 relative z-10 w-full flex flex-col justify-center h-full">
 					<FadeInSection>
 						<div className="flex flex-col gap-12 md:gap-16 w-full">
 							<div className="flex flex-col-reverse md:flex-row md:items-center justify-between gap-12 md:gap-8 w-full">
+								{/* Kiri: Teks & Tombol */}
 								<div className="max-w-2xl flex-1 flex flex-col justify-center">
 									<h1 className={`text-5xl md:text-7xl font-extrabold tracking-tight mb-4 ${c("text-slate-900", "text-white")}`}>Kevin Owen</h1>
 									<h2 className="text-xl md:text-2xl text-blue-500 font-bold mb-6 min-h-[1.5em]">
@@ -76,9 +94,11 @@ export const HomePage = ({ t, c, theme, portofolioData }: any) => {
 										</a>
 									</div>
 								</div>
+
+								{/* Kanan: Foto Profil */}
 								<div className="flex-shrink-0 relative group mx-auto md:mx-0">
 									<div className="absolute inset-0 bg-blue-500 rounded-3xl blur-2xl opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
-									<div className={`relative w-64 md:w-72 lg:w-80 aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl border-4 ${c("border-white", "border-slate-800")}`}>
+									<div className={`relative w-64 md:w-72 lg:w-80 aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl border-4 transition-colors duration-300 ${c("border-white", "border-slate-800")}`}>
 										<img
 											src="/profil.jpg"
 											alt="Kevin Owen"
@@ -88,7 +108,8 @@ export const HomePage = ({ t, c, theme, portofolioData }: any) => {
 									</div>
 								</div>
 							</div>
-							<div className={`pt-6 border-t flex flex-col sm:flex-row justify-between items-center gap-6 w-full ${c("border-slate-300 text-slate-600", "border-slate-700 text-slate-400")}`}>
+
+							<div className={`pt-6 border-t flex flex-col sm:flex-row justify-between items-center gap-6 w-full transition-colors duration-300 ${c("border-slate-300 text-slate-600", "border-slate-700 text-slate-400")}`}>
 								<div className="flex flex-wrap items-center justify-center sm:justify-start gap-6 text-sm font-medium">
 									<div className="flex items-center gap-3">
 										<MapPin
@@ -139,7 +160,7 @@ export const HomePage = ({ t, c, theme, portofolioData }: any) => {
 				</div>
 			</header>
 
-			<main className="max-w-6xl mx-auto px-6 py-20 flex flex-col gap-16 md:gap-24">
+			<main className="max-w-6xl mx-auto px-6 py-20 flex flex-col gap-16 md:gap-24 relative z-10">
 				{/* SKILLS */}
 				<FadeInSection>
 					<section id="skills">
@@ -180,18 +201,18 @@ export const HomePage = ({ t, c, theme, portofolioData }: any) => {
 								<h3 className={`text-2xl font-bold mb-8 flex items-center gap-3 ${c("text-slate-900", "text-white")}`}>
 									<Briefcase className="text-blue-500" /> <TextAnimation text={t.sections.expWork} />
 								</h3>
-								<div className={`space-y-10 border-l-2 pl-6 md:pl-8 ml-3 ${c("border-blue-200", "border-slate-700")}`}>
+								<div className={`space-y-10 border-l-2 pl-6 md:pl-8 ml-3 transition-colors duration-300 ${c("border-blue-200", "border-slate-700")}`}>
 									{t.experience.work.map((exp: any, idx: number) => (
 										<div
 											key={idx}
 											className="relative">
-											<div className={`absolute -left-[41px] md:-left-[49px] bg-blue-500 p-2 rounded-full border-4 ${c("border-slate-50", "border-slate-900")}`}>
+											<div className={`absolute -left-[41px] md:-left-[49px] bg-blue-500 p-2 rounded-full border-4 transition-colors duration-300 ${c("border-slate-50", "border-slate-900")}`}>
 												<Server
 													size={14}
 													className="text-white"
 												/>
 											</div>
-											<div className={`p-6 rounded-xl border transition-colors hover:border-blue-500/50 ${c("bg-white border-slate-200", "bg-slate-800/80 border-slate-700")}`}>
+											<div className={`p-6 rounded-xl border transition-colors duration-300 hover:border-blue-500/50 ${c("bg-white border-slate-200", "bg-slate-800/80 border-slate-700")}`}>
 												<span className="text-sm font-bold text-blue-500 mb-1 block">{exp.period}</span>
 												<h4 className={`text-xl font-bold mb-1 ${c("text-slate-900", "text-white")}`}>
 													<TextAnimation text={exp.role} />
@@ -221,18 +242,18 @@ export const HomePage = ({ t, c, theme, portofolioData }: any) => {
 								<h3 className={`text-2xl font-bold mb-8 flex items-center gap-3 ${c("text-slate-900", "text-white")}`}>
 									<Users className="text-blue-500" /> <TextAnimation text={t.sections.expOrg} />
 								</h3>
-								<div className={`space-y-10 border-l-2 pl-6 md:pl-8 ml-3 ${c("border-blue-200", "border-slate-700")}`}>
+								<div className={`space-y-10 border-l-2 pl-6 md:pl-8 ml-3 transition-colors duration-300 ${c("border-blue-200", "border-slate-700")}`}>
 									{t.experience.org.map((exp: any, idx: number) => (
 										<div
 											key={idx}
 											className="relative">
-											<div className={`absolute -left-[41px] md:-left-[49px] bg-slate-400 p-2 rounded-full border-4 ${c("border-slate-50", "border-slate-900")}`}>
+											<div className={`absolute -left-[41px] md:-left-[49px] bg-slate-400 p-2 rounded-full border-4 transition-colors duration-300 ${c("border-slate-50", "border-slate-900")}`}>
 												<LayoutIcon
 													size={14}
 													className="text-white"
 												/>
 											</div>
-											<div className={`p-6 rounded-xl border transition-colors hover:border-slate-400/50 ${c("bg-white border-slate-200", "bg-slate-800/80 border-slate-700")}`}>
+											<div className={`p-6 rounded-xl border transition-colors duration-300 hover:border-slate-400/50 ${c("bg-white border-slate-200", "bg-slate-800/80 border-slate-700")}`}>
 												<span className={`text-sm font-bold mb-1 block ${c("text-slate-500", "text-slate-400")}`}>{exp.period}</span>
 												<h4 className={`text-xl font-bold mb-1 ${c("text-slate-900", "text-white")}`}>
 													<TextAnimation text={exp.role} />
@@ -333,7 +354,7 @@ export const HomePage = ({ t, c, theme, portofolioData }: any) => {
 				<FadeInSection>
 					<section
 						id="education"
-						className={`rounded-3xl p-8 md:p-12 border transition-colors hover:border-blue-500/30 ${c("bg-white border-slate-200", "bg-slate-800/80 border-slate-700")}`}>
+						className={`rounded-3xl p-8 md:p-12 border transition-colors duration-300 hover:border-blue-500/30 ${c("bg-white border-slate-200", "bg-slate-800/80 border-slate-700")}`}>
 						<div className="md:flex justify-between items-center">
 							<div>
 								<h3 className={`text-2xl font-bold mb-4 ${c("text-slate-900", "text-white")}`}>
@@ -348,7 +369,7 @@ export const HomePage = ({ t, c, theme, portofolioData }: any) => {
 								</p>
 							</div>
 							<div className="mt-8 md:mt-0 text-left md:text-right">
-								<div className={`inline-block px-5 py-3 rounded-xl border ${c("bg-slate-50 border-slate-200", "bg-slate-900/50 border-slate-600")}`}>
+								<div className={`inline-block px-5 py-3 rounded-xl border transition-colors duration-300 ${c("bg-slate-50 border-slate-200", "bg-slate-900/50 border-slate-600")}`}>
 									<p className={`text-sm font-bold uppercase tracking-wider mb-1 ${c("text-slate-500", "text-slate-400")}`}>
 										<TextAnimation text={t.education.gpaText} />
 									</p>
@@ -382,7 +403,7 @@ export const HomePage = ({ t, c, theme, portofolioData }: any) => {
 							method="POST"
 							data-netlify="true"
 							onSubmit={handleSubmit}
-							className={`p-8 md:p-10 rounded-3xl shadow-lg border text-left ${c("bg-white border-slate-200 shadow-slate-200/50", "bg-slate-800/80 border-slate-700 shadow-none")}`}>
+							className={`p-8 md:p-10 rounded-3xl shadow-lg border text-left transition-colors duration-300 ${c("bg-white border-slate-200 shadow-slate-200/50", "bg-slate-800/80 border-slate-700 shadow-none")}`}>
 							<input
 								type="hidden"
 								name="form-name"
@@ -400,7 +421,7 @@ export const HomePage = ({ t, c, theme, portofolioData }: any) => {
 										id="name"
 										name="name"
 										required
-										className={`w-full px-5 py-4 rounded-xl border focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors ${c("bg-slate-50 border-slate-200 text-slate-900", "bg-slate-900/50 border-slate-600 text-white")}`}
+										className={`w-full px-5 py-4 rounded-xl border focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors duration-300 ${c("bg-slate-50 border-slate-200 text-slate-900", "bg-slate-900/50 border-slate-600 text-white")}`}
 										placeholder="John Doe"
 									/>
 								</div>
@@ -415,7 +436,7 @@ export const HomePage = ({ t, c, theme, portofolioData }: any) => {
 										id="email"
 										name="email"
 										required
-										className={`w-full px-5 py-4 rounded-xl border focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors ${c("bg-slate-50 border-slate-200 text-slate-900", "bg-slate-900/50 border-slate-600 text-white")}`}
+										className={`w-full px-5 py-4 rounded-xl border focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors duration-300 ${c("bg-slate-50 border-slate-200 text-slate-900", "bg-slate-900/50 border-slate-600 text-white")}`}
 										placeholder="john@example.com"
 									/>
 								</div>
@@ -430,7 +451,7 @@ export const HomePage = ({ t, c, theme, portofolioData }: any) => {
 										name="message"
 										rows={5}
 										required
-										className={`w-full px-5 py-4 rounded-xl border focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors resize-none ${c("bg-slate-50 border-slate-200 text-slate-900", "bg-slate-900/50 border-slate-600 text-white")}`}
+										className={`w-full px-5 py-4 rounded-xl border focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors duration-300 resize-none ${c("bg-slate-50 border-slate-200 text-slate-900", "bg-slate-900/50 border-slate-600 text-white")}`}
 										placeholder="Hello Kevin..."></textarea>
 								</div>
 								<button
