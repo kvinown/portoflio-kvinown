@@ -1,1 +1,44 @@
 @import "tailwindcss";
+
+@keyframes light-spread {
+  0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.8); opacity: 1; transform: scale(0.8); }
+  100% { box-shadow: 0 0 30px 20px rgba(255, 255, 255, 0); opacity: 0; transform: scale(2.5); }
+}
+
+@keyframes light-absorb {
+  0% { box-shadow: 0 0 30px 20px rgba(255, 255, 255, 0); opacity: 0; transform: scale(2.5); }
+  30% { opacity: 1; }
+  100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.8); opacity: 0; transform: scale(0.8); }
+}
+
+/* --- ANIMASI TERMINAL ROLL --- */
+@keyframes roll-in {
+  0% { opacity: 0; transform: translateY(100%); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes roll-out {
+  0% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-100%); }
+}
+
+.animate-roll-in {
+  animation: roll-in 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-roll-out {
+  animation: roll-out 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-spread {
+  animation: light-spread 0.6s ease-out forwards;
+}
+
+.animate-absorb {
+  animation: light-absorb 0.6s ease-in forwards;
+}
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
