@@ -7,7 +7,7 @@ export const portofolioData = {
 		github: "https://github.com/kvinown",
 		linkedin: "http://www.linkedin.com/in/kevin-owen-kvinown",
 		web: "https://kvinown.netlify.app",
-		cvFileName: "Resume CV Kevin Owen.pdf",
+		cvFileName: "Resume CV Kevin Owen(2).pdf",
 	},
 	skills: [
 		{ id: 1, icon: "server", title: "Programming Languages", items: ["PHP", "TypeScript", "Python", "Kotlin", "JavaScript", "Java"] },
@@ -28,6 +28,16 @@ export const portofolioData = {
 		sections: { skills: "Keahlian Teknis", expWork: "Pengalaman Kerja", expOrg: "Pengalaman Organisasi", proj: "Proyek", edu: "Pendidikan", contact: "Mari Berkolaborasi" },
 		experience: {
 			work: [
+				{
+					period: "Juni 2026 - Sekarang",
+					role: "Backend Developer",
+					place: "PT Royal Medicalink Pharmalab",
+					points: [
+						"Pemeliharaan Sistem: Mengidentifikasi dan menyelesaikan bug perangkat lunak untuk memastikan stabilitas sistem yang ada.",
+						"Pengembangan Sisten: Mengembangkan dan mengoptimalkan sistem backend yang sedang berjalan untuk performa dan skalabilitas yang lebih baik.",
+						"Manajemen Data: Memproses dan mengelola entri data penjualan dan pemasaran untuk mendukung divisi marketing.",
+					],
+				},
 				{
 					period: "Sep 2023 - Jan 2024",
 					role: "Lecturer Assistant",
@@ -115,6 +125,16 @@ export const portofolioData = {
 		sections: { skills: "Technical Skills", expWork: "Work Experience", expOrg: "Organizational Experience", proj: "Projects", edu: "Education", contact: "Let's Collaborate" },
 		experience: {
 			work: [
+				{
+					period: "June 2026 - Present",
+					role: "Backend Developer",
+					place: "PT Royal Medicalink Pharmalab",
+					points: [
+						"System Maintenance - Identified and resolved software bugs to ensure the stability of existing systems.",
+						"System Development - Developed and optimized ongoing backend systems for better performance and scalability.",
+						"Data Management - Processed and managed sales and marketing data entries to support promotional campaigns.",
+					],
+				},
 				{
 					period: "Sep 2023 - Jan 2024",
 					role: "Lecturer Assistant",
