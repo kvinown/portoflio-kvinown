@@ -31,6 +31,11 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, setLang, theme, setTheme, 
 				<div className="hidden md:flex items-center gap-8 text-sm font-medium">
 					<div className={`flex gap-6 ${c("text-slate-600", "text-slate-300")}`}>
 						<a
+							href="#hero"
+							className="hover:text-blue-500 transition-colors">
+							<TextAnimation text={t.nav.overview} />
+						</a>
+						<a
 							href="#experience"
 							className="hover:text-blue-500 transition-colors">
 							<TextAnimation text={t.nav.exp} />
@@ -95,6 +100,12 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, setLang, theme, setTheme, 
 			<div
 				className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isNavOpen ? "max-h-96 opacity-100 border-b" : "max-h-0 opacity-0 border-transparent"} ${c("bg-white border-slate-200 text-slate-700", "bg-slate-900 border-slate-800 text-slate-300")}`}>
 				<div className="px-6 py-4 flex flex-col gap-4 shadow-xl text-center">
+					<a
+						href="#hero"
+						onClick={() => setIsNavOpen(false)}
+						className="hover:text-blue-500 font-medium">
+						<TextAnimation text={t.nav.overview} />
+					</a>
 					<a
 						href="#experience"
 						onClick={() => setIsNavOpen(false)}

@@ -44,7 +44,7 @@ export const HomePage = ({ t, c, theme, portofolioData }: any) => {
 	return (
 		<>
 			{/* HEADER / HERO SECTION DENGAN EFEK CAHAYA LOGIN */}
-			<header className={`relative overflow-hidden min-h-screen flex items-center pt-24 pb-12 transition-colors duration-300 ${c("bg-slate-50", "bg-slate-900")}`}>
+			<header id="hero" className={`relative overflow-hidden min-h-screen flex items-center pt-24 pb-12 transition-colors duration-300 ${c("bg-slate-50", "bg-slate-900")}`}>
 				{/* --- ANIMASI CAHAYA (GLOWING ORBS) --- */}
 				<div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
 					{/* Cahaya Light Mode (Menyebar dari kanan atas ke seluruh layar) */}
