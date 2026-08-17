@@ -17,7 +17,7 @@ export const portofolioData = {
 		{ id: 5, icon: "wrench", title: "Tools & Version Control", items: ["Git/GitHub", "Postman", "Google Workspace"] },
 	],
 	id: {
-		nav: { overview: "Ringkasan", exp: "Pengalaman", proj: "Proyek", skills: "Keahlian", contact: "Kontak" },
+		nav: { overview: "Ringkasan", skills: "Keahlian", exp: "Pengalaman", proj: "Proyek", edu: "Pendidikan", contact: "Kontak" },
 		hero: {
 			role: "Fullstack Developer | Backend Specialist",
 			desc: "Lulusan Teknik Informatika dengan fondasi kuat dalam Fullstack Development, berspesialisasi pada sistem Backend. Berpengalaman mengembangkan aplikasi web yang terukur, kode yang terstruktur, dan manajemen basis data yang efisien. Memiliki kemampuan analitis dan problem-solving yang kuat, serta terbukti mampu berkolaborasi efektif dalam tim untuk mencapai tujuan proyek.",
@@ -114,7 +114,7 @@ export const portofolioData = {
 		},
 	},
 	en: {
-		nav: { overview: "Overview", exp: "Experience", proj: "Projects", skills: "Skills", contact: "Contact" },
+		nav: { overview: "Overview", skills: "Skills", exp: "Experience", proj: "Projects", edu: "Education", contact: "Contact" },
 		hero: {
 			role: "Fullstack Developer | Backend Specialist",
 			desc: "Informatics Engineering graduate with a strong foundation in Fullstack Development, specializing in Backend systems. Experienced in developing scalable web applications and tools, delivering structured code and efficient database management. Strong analytical and problem-solving skills, with a proven ability to collaborate effectively in team environments.",

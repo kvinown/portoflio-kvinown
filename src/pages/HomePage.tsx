@@ -102,6 +102,7 @@ export const HomePage = ({ t, c, theme, portofolioData }: any) => {
 										<img
 											src="/profil.jpg"
 											alt="Kevin Owen"
+											loading="lazy"
 											className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
 										/>
 										<div className="absolute inset-0 rounded-3xl shadow-[inset_0_0_20px_rgba(0,0,0,0.2)] pointer-events-none"></div>
