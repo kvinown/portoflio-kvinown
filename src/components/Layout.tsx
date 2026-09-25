@@ -1,5 +1,6 @@
 import React from "react";
 import { Navbar } from "./Navbar";
+import { Footer } from "./Footer";
 
 // Mendefinisikan props yang dibutuhkan Layout
 interface LayoutProps {
@@ -29,9 +30,7 @@ export const Layout: React.FC<LayoutProps> = ({ lang, setLang, theme, setTheme, 
 			{children}
 
 			{/* FOOTER SELALU ADA DI BAWAH */}
-			<footer className={`py-8 text-center border-t transition-colors duration-300 mt-10 ${c("bg-white border-slate-200 text-slate-500", "bg-slate-950 border-slate-800 text-slate-400")}`}>
-				<p className="font-medium">© {new Date().getFullYear()} Kevin Owen. Built with React & Tailwind CSS.</p>
-			</footer>
+			<Footer t={t} c={c} />
 		</div>
 	);
 };

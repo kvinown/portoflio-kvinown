@@ -1,14 +1,21 @@
 import React, { useState } from "react";
-import { Mail, Phone, MapPin, Globe, Server, Layout as LayoutIcon, Smartphone, Database, Wrench, ChevronRight, Send, Briefcase, Users, Download } from "lucide-react";
+import { Mail, Phone, MapPin, Globe, Server, Layout as LayoutIcon, Smartphone, Database, Wrench, ChevronRight, Send, Briefcase, Users, Download, Award } from "lucide-react";
 
 // Import komponen pembantu dan animasi
 import { FadeInSection } from "../animations/FadeInSection";
 import { TechDivider } from "../components/TechDivider";
 import { GithubIcon, LinkedinIcon, InstagramIcon } from "../components/Icons";
 import { TextAnimation } from "../animations/TextAnimation";
+import { CertificationModal } from "../components/CertificationModal";
+import { ProjectModal } from "../components/ProjectModal";
 
 export const HomePage = ({ t, c, theme, portofolioData }: any) => {
 	const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success">("idle");
+	const [projectFilter, setProjectFilter] = useState("All");
+	const [selectedCertIndex, setSelectedCertIndex] = useState<number | null>(null);
+	const [selectedProjectIndex, setSelectedProjectIndex] = useState<number | null>(null);
+
+	const filteredProjects = t.projects.filter((proj: any) => projectFilter === "All" || proj.category === projectFilter);
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -291,17 +298,34 @@ export const HomePage = ({ t, c, theme, portofolioData }: any) => {
 				{/* PROJECTS */}
 				<FadeInSection>
 					<section id="projects">
-						<h3 className={`text-3xl font-bold mb-10 ${c("text-slate-900", "text-white")}`}>
-							<TextAnimation text={t.sections.proj} />
-						</h3>
+						<div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-6">
+							<h3 className={`text-3xl font-bold ${c("text-slate-900", "text-white")}`}>
+								<TextAnimation text={t.sections.proj} />
+							</h3>
+							
+							{/* Project Filter */}
+							<div className={`flex flex-wrap gap-2 p-1.5 rounded-2xl border ${c("bg-slate-100 border-slate-200", "bg-slate-800/50 border-slate-700")}`}>
+								{["All", "Frontend", "Backend", "Fullstack"].map((filter) => (
+									<button
+										key={filter}
+										onClick={() => setProjectFilter(filter)}
+										className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all ${
+											projectFilter === filter
+												? c("bg-white text-blue-600 shadow-sm", "bg-slate-700 text-blue-400")
+												: c("text-slate-500 hover:text-slate-700", "text-slate-400 hover:text-slate-200")
+										}`}
+									>
+										{filter}
+									</button>
+								))}
+							</div>
+						</div>
 						<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-							{t.projects.map((proj: any, idx: number) => (
-								<a
+							{filteredProjects.map((proj: any, idx: number) => (
+								<div
 									key={idx}
-									href={proj.githubUrl}
-									target="_blank"
-									rel="noreferrer"
-									className={`rounded-2xl overflow-hidden border transition-all duration-300 hover:shadow-xl hover:-translate-y-2 group flex flex-col ${c("bg-white border-slate-200 hover:border-blue-400", "bg-slate-800/80 border-slate-700 hover:border-blue-500")}`}>
+									onClick={() => setSelectedProjectIndex(idx)}
+									className={`cursor-pointer rounded-2xl overflow-hidden border transition-all duration-300 hover:shadow-xl hover:-translate-y-2 group flex flex-col ${c("bg-white border-slate-200 hover:border-blue-400", "bg-slate-800/80 border-slate-700 hover:border-blue-500")}`}>
 									<div className={`h-48 flex items-center justify-center border-b transition-colors relative ${c("bg-gradient-to-br from-slate-50 to-blue-50 border-slate-200", "bg-slate-700/50 border-slate-600")}`}>
 										<div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-slate-900/50 p-2 rounded-full backdrop-blur-sm">
 											<GithubIcon
@@ -341,7 +365,7 @@ export const HomePage = ({ t, c, theme, portofolioData }: any) => {
 											))}
 										</div>
 									</div>
-								</a>
+								</div>
 							))}
 						</div>
 					</section>
@@ -380,6 +404,43 @@ export const HomePage = ({ t, c, theme, portofolioData }: any) => {
 								</div>
 								<p className={`font-bold mt-4 ${c("text-slate-500", "text-slate-400")}`}>2022 - 2026</p>
 							</div>
+						</div>
+					</section>
+				</FadeInSection>
+
+				<FadeInSection>
+					<TechDivider theme={theme} />
+				</FadeInSection>
+
+				{/* CERTIFICATIONS */}
+				<FadeInSection>
+					<section id="certifications" className="mt-24">
+						<h3 className={`text-3xl font-bold mb-10 ${c("text-slate-900", "text-white")}`}>
+							<TextAnimation text={t.sections.cert} />
+						</h3>
+						<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+							{t.certifications?.map((cert: any, idx: number) => (
+								<div 
+									key={idx}
+									onClick={() => setSelectedCertIndex(idx)}
+									className={`cursor-pointer rounded-2xl p-6 md:p-8 border transition-all duration-300 hover:shadow-xl hover:-translate-y-2 flex flex-col items-center text-center gap-6 ${c("bg-white border-slate-200 hover:border-blue-400", "bg-slate-800/80 border-slate-700 hover:border-blue-500")}`}
+								>
+									<div className={`p-4 rounded-full ${c("bg-blue-50 text-blue-600", "bg-slate-700 text-blue-400")}`}>
+										<Award size={48} />
+									</div>
+									<div>
+										<h4 className={`text-xl font-bold mb-2 ${c("text-slate-900", "text-white")}`}>
+											{cert.title}
+										</h4>
+										<p className={`font-medium ${c("text-blue-600", "text-blue-400")}`}>
+											{cert.issuer}
+										</p>
+										<p className={`text-sm mt-2 ${c("text-slate-500", "text-slate-400")}`}>
+											{cert.date}
+										</p>
+									</div>
+								</div>
+							))}
 						</div>
 					</section>
 				</FadeInSection>
@@ -472,6 +533,26 @@ export const HomePage = ({ t, c, theme, portofolioData }: any) => {
 					</section>
 				</FadeInSection>
 			</main>
+			
+			{/* Modals */}
+			<CertificationModal 
+				cert={selectedCertIndex !== null ? t.certifications[selectedCertIndex] : null} 
+				isOpen={selectedCertIndex !== null} 
+				onClose={() => setSelectedCertIndex(null)} 
+				onNext={selectedCertIndex !== null && selectedCertIndex < t.certifications.length - 1 ? () => setSelectedCertIndex(selectedCertIndex + 1) : undefined}
+				onPrev={selectedCertIndex !== null && selectedCertIndex > 0 ? () => setSelectedCertIndex(selectedCertIndex - 1) : undefined}
+				c={c} 
+			/>
+
+			<ProjectModal 
+				project={selectedProjectIndex !== null ? filteredProjects[selectedProjectIndex] : null} 
+				isOpen={selectedProjectIndex !== null} 
+				onClose={() => setSelectedProjectIndex(null)} 
+				onNext={selectedProjectIndex !== null && selectedProjectIndex < filteredProjects.length - 1 ? () => setSelectedProjectIndex(selectedProjectIndex + 1) : undefined}
+				onPrev={selectedProjectIndex !== null && selectedProjectIndex > 0 ? () => setSelectedProjectIndex(selectedProjectIndex - 1) : undefined}
+				c={c} 
+				t={t}
+			/>
 		</>
 	);
 };

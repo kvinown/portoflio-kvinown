@@ -17,7 +17,7 @@ export const portofolioData = {
 		{ id: 5, icon: "wrench", title: "Tools & Version Control", items: ["Git/GitHub", "Postman", "Google Workspace"] },
 	],
 	id: {
-		nav: { overview: "Ringkasan", skills: "Keahlian", exp: "Pengalaman", proj: "Proyek", edu: "Pendidikan", contact: "Kontak" },
+		nav: { overview: "Ringkasan", skills: "Keahlian", exp: "Pengalaman", proj: "Proyek", edu: "Pendidikan", cert: "Sertifikasi", contact: "Kontak" },
 		hero: {
 			role: "Fullstack Developer | Backend Specialist",
 			desc: "Lulusan Teknik Informatika dengan fondasi kuat dalam Fullstack Development, berspesialisasi pada sistem Backend. Berpengalaman mengembangkan aplikasi web yang terukur, kode yang terstruktur, dan manajemen basis data yang efisien. Memiliki kemampuan analitis dan problem-solving yang kuat, serta terbukti mampu berkolaborasi efektif dalam tim untuk mencapai tujuan proyek.",
@@ -25,7 +25,8 @@ export const portofolioData = {
 			btnWa: "WhatsApp",
 			btnDownload: "Unduh CV",
 		},
-		sections: { skills: "Keahlian Teknis", expWork: "Pengalaman Kerja", expOrg: "Pengalaman Organisasi", proj: "Proyek", edu: "Pendidikan", contact: "Mari Berkolaborasi" },
+		sections: { skills: "Keahlian Teknis", expWork: "Pengalaman Kerja", expOrg: "Pengalaman Organisasi", proj: "Proyek", edu: "Pendidikan", cert: "Sertifikasi & Penghargaan", contact: "Mari Berkolaborasi" },
+		projectModal: { github: "Buka GitHub", live: "Live Preview", noLive: "Tidak Ada Live Preview" },
 		experience: {
 			work: [
 				{
@@ -65,6 +66,8 @@ export const portofolioData = {
 				desc: "Pengembangan aplikasi berbasis web untuk kutipan kode (Code Citation). Fokus pada Web Development, Data Processing, dan Software Testing.",
 				tags: ["HTML", "Babel.js", "Tailwind CSS"],
 				githubUrl: "https://github.com/kvinown/code-cite",
+				liveUrl: "https://code-cite.netlify.app/",
+				category: "Frontend",
 			},
 			{
 				title: "CODE-CITE EXTENSION",
@@ -72,6 +75,9 @@ export const portofolioData = {
 				desc: "Pengembangan plugin Visual Studio Code untuk kutipan kode terstruktur. Fokus pada Plugin Development, Software Engineering, dan Usability Evaluation.",
 				tags: ["TypeScript"],
 				githubUrl: "https://github.com/kvinown/code-cite-extension",
+				liveUrl: "https://marketplace.visualstudio.com/items?itemName=kvinowndev.code-cite",
+				previewImage: "/placeholder.jpg", // TODO: Ganti dengan screenshot plugin
+				category: "Frontend",
 			},
 			{
 				title: "SIMBA-APP",
@@ -79,6 +85,8 @@ export const portofolioData = {
 				desc: "Mengembangkan modul kehadiran mahasiswa berbasis web sebagai bagian dari program Kerja Praktik di Universitas Kristen Maranatha[cite: 32]. Mendigitalisasi sistem pelaporan akademik dan catatan resmi untuk meningkatkan efisiensi pelacakan kehadiran dan manajemen data[cite: 33].",
 				tags: ["Laravel", "Blade", "HTML", "Bootstrap", "JavaScript", "MySQL"],
 				githubUrl: "https://github.com/kvinown/SIMBA-APP",
+				liveUrl: "",
+				category: "Fullstack",
 			},
 			{
 				title: "HR Management System",
@@ -86,6 +94,8 @@ export const portofolioData = {
 				desc: "Mengembangkan platform HR komprehensif berbasis web untuk menyederhanakan data karyawan, penggajian, dan manajemen cuti[cite: 36]. Merancang sistem kehadiran canggih yang mengintegrasikan pelacakan GPS dan verifikasi kamera untuk pencatatan log yang aman[cite: 37].",
 				tags: ["React.js", "Node.js", "TypeScript", "PostgreSQL", "Tailwind CSS"],
 				githubUrl: "https://github.com/kvinown/hr-management-system-fullstack",
+				liveUrl: "",
+				category: "Fullstack",
 			},
 			{
 				title: "MimbarCast",
@@ -93,6 +103,8 @@ export const portofolioData = {
 				desc: "Membangun aplikasi web real-time menggunakan WebSockets untuk memungkinkan kontrol jarak jauh pada papan tulis digital dan tampilan ayat Alkitab dari perangkat seluler ke proyektor PC[cite: 41].",
 				tags: ["HTML", "CSS", "JavaScript", "Fabric.js", "WebSockets"],
 				githubUrl: "https://github.com/kvinown/MimbarCast",
+				liveUrl: "",
+				category: "Fullstack",
 			},
 			{
 				title: "Storevo Backend",
@@ -100,9 +112,22 @@ export const portofolioData = {
 				desc: "Merancang API backend yang tangguh untuk menangani logika bisnis inti, operasi basis data, dan integrasi data untuk sistem POS serta inventaris ritel/toko roti[cite: 45].",
 				tags: ["NestJS", "TypeScript", "Prisma", "MySQL", "Swagger API"],
 				githubUrl: "https://github.com/Storevo",
+				liveUrl: "",
+				category: "Backend",
 			},
 		],
 		education: { degree: "S1 Teknik Informatika", expertise: "Spesialisasi: Pemgrograman Backend dan Prompt Engineering", gpaText: "IPK Terakhir" },
+		certifications: [
+			{
+				title: "Code Cite — Copyright Registration",
+				issuer: "Direktorat Jenderal Kekayaan Intelektual",
+				date: "Mei 2026",
+				credentialId: "001241324",
+				desc: "Proyek perangkat lunak 'Code Cite' resmi mendapatkan Pencatatan Hak Cipta dari Kementerian Hukum dan HAM Republik Indonesia. Dikembangkan secara kolaboratif bersama Oscar Karnalim.",
+				file: "/sertifikat_2026-05-21 (2).pdf",
+				link: "https://www.linkedin.com/in/kevin-owen-kvinown",
+			},
+		],
 		contactForm: {
 			desc: "Tertarik untuk bekerja sama atau memiliki pertanyaan? Jangan ragu untuk mengirimkan pesan melalui form di bawah ini.",
 			nameLabel: "Nama Lengkap",
@@ -114,7 +139,7 @@ export const portofolioData = {
 		},
 	},
 	en: {
-		nav: { overview: "Overview", skills: "Skills", exp: "Experience", proj: "Projects", edu: "Education", contact: "Contact" },
+		nav: { overview: "Overview", skills: "Skills", exp: "Experience", proj: "Projects", edu: "Education", cert: "Certifications", contact: "Contact" },
 		hero: {
 			role: "Fullstack Developer | Backend Specialist",
 			desc: "Informatics Engineering graduate with a strong foundation in Fullstack Development, specializing in Backend systems. Experienced in developing scalable web applications and tools, delivering structured code and efficient database management. Strong analytical and problem-solving skills, with a proven ability to collaborate effectively in team environments.",
@@ -122,7 +147,8 @@ export const portofolioData = {
 			btnWa: "WhatsApp",
 			btnDownload: "Download CV",
 		},
-		sections: { skills: "Technical Skills", expWork: "Work Experience", expOrg: "Organizational Experience", proj: "Projects", edu: "Education", contact: "Let's Collaborate" },
+		sections: { skills: "Technical Skills", expWork: "Work Experience", expOrg: "Organizational Experience", proj: "Projects", edu: "Education", cert: "Licenses & Certifications", contact: "Let's Collaborate" },
+		projectModal: { github: "Open GitHub", live: "Live Preview", noLive: "No Live Preview" },
 		experience: {
 			work: [
 				{
@@ -162,6 +188,8 @@ export const portofolioData = {
 				desc: "Development of a Web-Based Code Citation Application. Expertise in Web Development, Data Processing, and Software Testing.",
 				tags: ["HTML", "Babel.js", "Tailwind CSS"],
 				githubUrl: "https://github.com/kvinown/code-cite",
+				liveUrl: "https://code-cite.netlify.app/",
+				category: "Frontend",
 			},
 			{
 				title: "CODE-CITE EXTENSION",
@@ -169,6 +197,9 @@ export const portofolioData = {
 				desc: "Development of a Visual Studio Code Plugin for Structured Code Citation. Expertise in Plugin Development, Software Engineering, and Usability Evaluation.",
 				tags: ["TypeScript"],
 				githubUrl: "https://github.com/kvinown/code-cite-extension",
+				liveUrl: "https://marketplace.visualstudio.com/items?itemName=kvinowndev.code-cite",
+				previewImage: "/placeholder.jpg", // TODO: Ganti dengan screenshot plugin
+				category: "Frontend",
 			},
 			{
 				title: "SIMBA-APP",
@@ -176,6 +207,8 @@ export const portofolioData = {
 				desc: "Developed a web-based student attendance module as part of a Practical Work program at Maranatha Christian University. Digitalized the academic reporting and official records system to improve the efficiency of attendance tracking and data management.",
 				tags: ["Laravel", "Blade", "HTML", "Bootstrap", "JavaScript", "MySQL"],
 				githubUrl: "https://github.com/kvinown/SIMBA-APP",
+				liveUrl: "",
+				category: "Fullstack",
 			},
 			{
 				title: "HR Management System",
@@ -183,6 +216,8 @@ export const portofolioData = {
 				desc: "Developing a comprehensive web-based HR platform to streamline employee data, payroll, and leave management. Designing an advanced attendance system integrating GPS tracking and camera verification for secure logging.",
 				tags: ["React.js", "Node.js", "TypeScript", "PostgreSQL", "Tailwind CSS"],
 				githubUrl: "https://github.com/kvinown/hr-management-system-fullstack",
+				liveUrl: "",
+				category: "Fullstack",
 			},
 			{
 				title: "MimbarCast",
@@ -190,6 +225,8 @@ export const portofolioData = {
 				desc: "Built a real-time web application using WebSockets to enable remote control of digital whiteboards and Bible verse displays from mobile devices to PC projectors.",
 				tags: ["HTML", "CSS", "JavaScript", "Fabric.js", "WebSockets"],
 				githubUrl: "https://github.com/kvinown/MimbarCast",
+				liveUrl: "",
+				category: "Fullstack",
 			},
 			{
 				title: "Storevo Backend",
@@ -197,9 +234,22 @@ export const portofolioData = {
 				desc: "Engineered a robust backend API to handle core business logic, database operations, and data integration for retail/bakery POS and inventory systems.",
 				tags: ["NestJS", "TypeScript", "Prisma", "MySQL", "Swagger API"],
 				githubUrl: "https://github.com/Storevo",
+				liveUrl: "",
+				category: "Backend",
 			},
 		],
 		education: { degree: "Bachelor of Computer: Informatics Engineering", expertise: "Expertise: Backend Development & Prompt Engineering", gpaText: "Latest GPA" },
+		certifications: [
+			{
+				title: "Code Cite — Copyright Registration",
+				issuer: "Direktorat Jenderal Kekayaan Intelektual",
+				date: "May 2026",
+				credentialId: "001241324",
+				desc: "Our software project 'Code Cite' officially received Copyright Registration from the Ministry of Law of the Republic of Indonesia. Developed collaboratively with Oscar Karnalim.",
+				file: "/sertifikat_2026-05-21 (2).pdf",
+				link: "https://www.linkedin.com/in/kevin-owen-kvinown",
+			},
+		],
 		contactForm: {
 			desc: "Interested in working together or have any questions? Feel free to send a message using the form below.",
 			nameLabel: "Full Name",
