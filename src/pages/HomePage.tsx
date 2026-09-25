@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Mail, Phone, MapPin, Globe, Server, Layout as LayoutIcon, Smartphone, Database, Wrench, ChevronRight, Send, Briefcase, Users, Download, Award } from "lucide-react";
+import { Mail, Phone, MapPin, Globe, Server, Layout as LayoutIcon, Smartphone, Database, Wrench, ChevronRight, Send, Briefcase, Users, Download, Award, Code2 } from "lucide-react";
 
 // Import komponen pembantu dan animasi
 import { FadeInSection } from "../animations/FadeInSection";
@@ -8,6 +8,8 @@ import { GithubIcon, LinkedinIcon, InstagramIcon } from "../components/Icons";
 import { TextAnimation } from "../animations/TextAnimation";
 import { CertificationModal } from "../components/CertificationModal";
 import { ProjectModal } from "../components/ProjectModal";
+import { CustomCursor } from "../components/CustomCursor";
+import { BentoGrid } from "../components/BentoGrid";
 
 export const HomePage = ({ t, c, theme, portofolioData }: any) => {
 	const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success">("idle");
@@ -50,8 +52,9 @@ export const HomePage = ({ t, c, theme, portofolioData }: any) => {
 
 	return (
 		<>
+			<CustomCursor />
 			{/* HEADER / HERO SECTION DENGAN EFEK CAHAYA LOGIN */}
-			<header id="hero" className={`relative overflow-hidden min-h-screen flex items-center pt-24 pb-12 transition-colors duration-300 ${c("bg-slate-50", "bg-slate-900")}`}>
+			<header id="hero" className={`relative overflow-hidden min-h-screen flex items-center pt-24 pb-12 transition-colors duration-300`}>
 				{/* --- ANIMASI CAHAYA (GLOWING ORBS) --- */}
 				<div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
 					{/* Cahaya Light Mode (Menyebar dari kanan atas ke seluruh layar) */}
@@ -73,31 +76,51 @@ export const HomePage = ({ t, c, theme, portofolioData }: any) => {
 							<div className="flex flex-col-reverse md:flex-row md:items-center justify-between gap-12 md:gap-8 w-full">
 								{/* Kiri: Teks & Tombol */}
 								<div className="max-w-2xl flex-1 flex flex-col justify-center">
-									<h1 className={`text-5xl md:text-7xl font-extrabold tracking-tight mb-4 ${c("text-slate-900", "text-white")}`}>Kevin Owen</h1>
-									<h2 className="text-xl md:text-2xl text-blue-500 font-bold mb-6 min-h-[1.5em]">
+									<h1 className={`text-5xl md:text-7xl font-extrabold tracking-tight mb-4 leading-tight pb-2 ${c("text-slate-900", "text-white")}`}>
+										Kevin Owen
+									</h1>
+									<h2 className="text-xl md:text-2xl text-blue-500 font-bold mb-6 min-h-[1.5em] flex items-center gap-3">
+										<Code2 className="animate-pulse" size={28} />
 										<TextAnimation text={t.hero.role} />
 									</h2>
 									<p className={`text-lg md:text-xl leading-relaxed mb-8 ${c("text-slate-600", "text-slate-300")}`}>
 										<TextAnimation text={t.hero.desc} />
 									</p>
-									<div className="flex flex-wrap gap-4 text-sm">
+									<div className="flex flex-wrap items-center gap-4 text-sm mb-8">
 										<a
 											href={`mailto:${portofolioData.contacts.email}`}
-											className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-full shadow-lg shadow-blue-600/30">
+											className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-full shadow-lg shadow-blue-600/30 transition-all hover:scale-105">
 											<Mail size={18} /> <TextAnimation text={t.hero.btnEmail} />
 										</a>
 										<a
 											href={`https://wa.me/${portofolioData.contacts.phoneWa}`}
 											target="_blank"
 											rel="noreferrer"
-											className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-3 rounded-full shadow-lg shadow-green-600/30">
+											className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-3 rounded-full shadow-lg shadow-green-600/30 transition-all hover:scale-105">
 											<Phone size={18} /> <TextAnimation text={t.hero.btnWa} />
 										</a>
 										<a
 											href={`/${portofolioData.contacts.cvFileName}`}
 											download
-											className={`flex items-center gap-2 px-6 py-3 rounded-full font-bold transition-colors border-2 ${c("border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white", "border-slate-300 text-slate-300 hover:bg-white hover:text-slate-900")}`}>
+											className={`flex items-center gap-2 px-6 py-3 rounded-full font-bold transition-all hover:scale-105 border-2 ${c("border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white", "border-slate-300 text-slate-300 hover:bg-white hover:text-slate-900")}`}>
 											<Download size={18} /> <TextAnimation text={t.hero.btnDownload} />
+										</a>
+									</div>
+									
+									{/* Social Icons dipindah ke sini agar lebih clean */}
+									<div className="flex items-center gap-6">
+										<span className={`text-sm font-bold uppercase tracking-wider ${c("text-slate-400", "text-slate-500")}`}>Connect:</span>
+										<a href={portofolioData.contacts.github} target="_blank" rel="noreferrer" className={`transition-all hover:scale-125 hover:text-blue-500 ${c("text-slate-600", "text-slate-400")}`}>
+											<GithubIcon size={24} />
+										</a>
+										<a href={portofolioData.contacts.linkedin} target="_blank" rel="noreferrer" className={`transition-all hover:scale-125 hover:text-blue-500 ${c("text-slate-600", "text-slate-400")}`}>
+											<LinkedinIcon size={24} />
+										</a>
+										<a href={portofolioData.contacts.instagram} target="_blank" rel="noreferrer" className={`transition-all hover:scale-125 hover:text-blue-500 ${c("text-slate-600", "text-slate-400")}`}>
+											<InstagramIcon size={24} />
+										</a>
+										<a href={portofolioData.contacts.web} className={`transition-all hover:scale-125 hover:text-blue-500 ${c("text-slate-600", "text-slate-400")}`}>
+											<Globe size={24} />
 										</a>
 									</div>
 								</div>
@@ -105,6 +128,20 @@ export const HomePage = ({ t, c, theme, portofolioData }: any) => {
 								{/* Kanan: Foto Profil */}
 								<div className="flex-shrink-0 relative group mx-auto md:mx-0">
 									<div className="absolute inset-0 bg-blue-500 rounded-3xl blur-2xl opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
+									
+									{/* Floating Badge (Pemanis) */}
+									<div className={`absolute -bottom-6 -left-6 z-20 px-6 py-4 rounded-2xl shadow-2xl backdrop-blur-md border animate-bounce-slow ${c("bg-white/80 border-slate-200", "bg-slate-800/80 border-slate-700")}`}>
+										<div className="flex items-center gap-3">
+											<div className="p-2 bg-blue-500 text-white rounded-full">
+												<Server size={20} />
+											</div>
+											<div>
+												<p className={`text-xs font-bold uppercase ${c("text-slate-500", "text-slate-400")}`}>Specialist</p>
+												<p className={`font-extrabold ${c("text-slate-900", "text-white")}`}>Backend System</p>
+											</div>
+										</div>
+									</div>
+
 									<div className={`relative w-64 md:w-72 lg:w-80 aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl border-4 transition-colors duration-300 ${c("border-white", "border-slate-800")}`}>
 										<img
 											src="/profil.jpg"
@@ -116,59 +153,16 @@ export const HomePage = ({ t, c, theme, portofolioData }: any) => {
 									</div>
 								</div>
 							</div>
-
-							<div className={`pt-6 border-t flex flex-col sm:flex-row justify-between items-center gap-6 w-full transition-colors duration-300 ${c("border-slate-300 text-slate-600", "border-slate-700 text-slate-400")}`}>
-								<div className="flex flex-wrap items-center justify-center sm:justify-start gap-6 text-sm font-medium">
-									<div className="flex items-center gap-3">
-										<MapPin
-											size={18}
-											className="text-blue-500"
-										/>{" "}
-										Bandung, Indonesia
-									</div>
-									<div className="flex items-center gap-3">
-										<Phone
-											size={18}
-											className="text-blue-500"
-										/>{" "}
-										{portofolioData.contacts.phoneDisplay}
-									</div>
-								</div>
-								<div className="flex items-center justify-center gap-6">
-									<a
-										href={portofolioData.contacts.github}
-										target="_blank"
-										rel="noreferrer"
-										className="hover:text-blue-500 transition-colors">
-										<GithubIcon size={24} />
-									</a>
-									<a
-										href={portofolioData.contacts.linkedin}
-										target="_blank"
-										rel="noreferrer"
-										className="hover:text-blue-500 transition-colors">
-										<LinkedinIcon size={24} />
-									</a>
-									<a
-										href={portofolioData.contacts.instagram}
-										target="_blank"
-										rel="noreferrer"
-										className="hover:text-blue-500 transition-colors">
-										<InstagramIcon size={24} />
-									</a>
-									<a
-										href={portofolioData.contacts.web}
-										className="hover:text-blue-500 transition-colors">
-										<Globe size={24} />
-									</a>
-								</div>
-							</div>
 						</div>
 					</FadeInSection>
 				</div>
 			</header>
 
-			<main className="max-w-6xl mx-auto px-6 py-20 flex flex-col gap-16 md:gap-24 relative z-10">
+			<main className="max-w-6xl mx-auto px-6 py-12 md:py-20 flex flex-col gap-16 md:gap-24 relative z-10">
+				
+				{/* BENTO GRID (ABOUT / QUICK FACTS) */}
+				<BentoGrid t={t} c={c} theme={theme} />
+
 				{/* SKILLS */}
 				<FadeInSection>
 					<section id="skills">
@@ -363,6 +357,78 @@ export const HomePage = ({ t, c, theme, portofolioData }: any) => {
 													{tag}
 												</span>
 											))}
+										</div>
+									</div>
+								</div>
+							))}
+						</div>
+					</section>
+				</FadeInSection>
+
+				<FadeInSection>
+					<TechDivider theme={theme} />
+				</FadeInSection>
+
+				{/* DIGITAL PRODUCTS (COMING SOON) */}
+				<FadeInSection>
+					<section id="products" className="relative group">
+						<div className="absolute inset-0 bg-blue-500/5 blur-3xl -z-10 rounded-3xl"></div>
+						<div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
+							<div className="max-w-2xl">
+								<div className="flex items-center gap-3 mb-4">
+									<div className={`p-2 rounded-lg ${c("bg-blue-100 text-blue-600", "bg-blue-900/50 text-blue-400")}`}>
+										<LayoutIcon size={24} />
+									</div>
+									<h3 className={`text-3xl font-bold ${c("text-slate-900", "text-white")}`}>
+										<TextAnimation text={t.sections.products} />
+									</h3>
+								</div>
+								<p className={`text-lg leading-relaxed ${c("text-slate-600", "text-slate-400")}`}>
+									<TextAnimation text={t.productsDesc} />
+								</p>
+							</div>
+						</div>
+
+						<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+							{t.productsList?.map((product: any, idx: number) => (
+								<div key={idx} className={`relative overflow-hidden rounded-3xl border transition-all duration-300 flex flex-col ${c("bg-white border-slate-200", "bg-slate-800/80 border-slate-700")}`}>
+									<div className="absolute top-4 right-4 z-20">
+										<span className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest backdrop-blur-md shadow-sm ${c("bg-white/90 text-blue-600 border border-blue-100", "bg-slate-900/80 text-blue-400 border border-blue-900")}`}>
+											{product.status}
+										</span>
+									</div>
+									<div className={`h-56 relative flex items-center justify-center overflow-hidden border-b ${c("bg-slate-100 border-slate-200", "bg-slate-900 border-slate-700")}`}>
+										{/* Fake skeleton UI for template */}
+										<div className={`w-3/4 h-3/4 flex ${idx % 2 === 0 ? 'flex-col' : ''} gap-3 opacity-30 blur-[2px]`}>
+											{idx % 2 === 0 ? (
+												<>
+													<div className="w-full h-12 bg-slate-400 rounded-xl"></div>
+													<div className="w-2/3 h-8 bg-slate-400 rounded-lg"></div>
+													<div className="flex gap-2 h-full">
+														<div className="w-1/2 h-full bg-slate-400 rounded-xl"></div>
+														<div className="w-1/2 h-full bg-slate-400 rounded-xl"></div>
+													</div>
+												</>
+											) : (
+												<>
+													<div className="w-1/3 h-full bg-slate-400 rounded-xl"></div>
+													<div className="w-2/3 h-full flex flex-col gap-3">
+														<div className="w-full h-1/2 bg-slate-400 rounded-xl"></div>
+														<div className="w-3/4 h-1/4 bg-slate-400 rounded-lg"></div>
+													</div>
+												</>
+											)}
+										</div>
+										<div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent"></div>
+									</div>
+									<div className="p-8 flex-1 flex flex-col justify-between">
+										<div>
+											<h4 className={`text-2xl font-bold mb-3 ${c("text-slate-900", "text-white")}`}>
+												{product.title}
+											</h4>
+											<p className={`mb-6 leading-relaxed ${c("text-slate-600", "text-slate-400")}`}>
+												{product.desc}
+											</p>
 										</div>
 									</div>
 								</div>

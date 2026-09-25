@@ -56,12 +56,41 @@ export const ProjectModal = ({ project, isOpen, onClose, onNext, onPrev, c, t }:
 				<div className="flex-1 overflow-hidden flex flex-col md:flex-row">
 					{/* Left Column: Info */}
 					<div className={`w-full md:w-1/3 flex flex-col overflow-y-auto p-6 md:p-10 border-r ${c("border-slate-200", "border-slate-800")}`}>
-						<div className="mb-8">
-							<h4 className={`text-sm uppercase tracking-wider font-bold mb-3 ${c("text-slate-500", "text-slate-400")}`}>Description</h4>
-							<p className={`leading-relaxed text-base ${c("text-slate-700", "text-slate-300")}`}>
-								<TextAnimation text={project.desc} />
-							</p>
-						</div>
+						{project.caseStudy ? (
+							<div className="mb-8 space-y-6">
+								<div>
+									<h4 className={`flex items-center gap-2 text-sm uppercase tracking-wider font-bold mb-2 ${c("text-slate-900", "text-white")}`}>
+										<span className="text-red-500">🎯</span> {t.projectModal?.challenge || "The Challenge"}
+									</h4>
+									<p className={`leading-relaxed text-sm ${c("text-slate-700", "text-slate-300")}`}>
+										<TextAnimation text={project.caseStudy.problem} />
+									</p>
+								</div>
+								<div>
+									<h4 className={`flex items-center gap-2 text-sm uppercase tracking-wider font-bold mb-2 ${c("text-slate-900", "text-white")}`}>
+										<span className="text-yellow-500">💡</span> {t.projectModal?.solution || "The Solution"}
+									</h4>
+									<p className={`leading-relaxed text-sm ${c("text-slate-700", "text-slate-300")}`}>
+										<TextAnimation text={project.caseStudy.solution} />
+									</p>
+								</div>
+								<div>
+									<h4 className={`flex items-center gap-2 text-sm uppercase tracking-wider font-bold mb-2 ${c("text-slate-900", "text-white")}`}>
+										<span className="text-blue-500">🚀</span> {t.projectModal?.impact || "The Impact"}
+									</h4>
+									<p className={`leading-relaxed text-sm ${c("text-slate-700", "text-slate-300")}`}>
+										<TextAnimation text={project.caseStudy.impact} />
+									</p>
+								</div>
+							</div>
+						) : (
+							<div className="mb-8">
+								<h4 className={`text-sm uppercase tracking-wider font-bold mb-3 ${c("text-slate-500", "text-slate-400")}`}>Description</h4>
+								<p className={`leading-relaxed text-base ${c("text-slate-700", "text-slate-300")}`}>
+									<TextAnimation text={project.desc} />
+								</p>
+							</div>
+						)}
 
 						<div className="mb-8">
 							<h4 className={`text-sm uppercase tracking-wider font-bold mb-3 ${c("text-slate-500", "text-slate-400")}`}>Technologies</h4>

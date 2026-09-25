@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://kevinowen.netlify.app/sitemap.xml

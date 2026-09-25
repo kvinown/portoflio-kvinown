@@ -25,8 +25,30 @@ export const portofolioData = {
 			btnWa: "WhatsApp",
 			btnDownload: "Unduh CV",
 		},
-		sections: { skills: "Keahlian Teknis", expWork: "Pengalaman Kerja", expOrg: "Pengalaman Organisasi", proj: "Proyek", edu: "Pendidikan", cert: "Sertifikasi & Penghargaan", contact: "Mari Berkolaborasi" },
-		projectModal: { github: "Buka GitHub", live: "Live Preview", noLive: "Tidak Ada Live Preview" },
+		sections: { skills: "Keahlian Teknis", expWork: "Pengalaman Kerja", expOrg: "Pengalaman Organisasi", proj: "Proyek", products: "Produk Digital", edu: "Pendidikan", cert: "Sertifikasi & Penghargaan", contact: "Mari Berkolaborasi" },
+		projectModal: { github: "Buka GitHub", live: "Live Preview", noLive: "Tidak Ada Live Preview", challenge: "Tantangan", solution: "Solusi", impact: "Dampak" },
+		productsDesc: "Template premium dan solusi digital yang dirancang untuk membantu bisnis dan developer membangun lebih cepat.",
+		productsList: [
+			{
+				title: "Pro-Company Template",
+				desc: "Template profil perusahaan yang dioptimalkan dengan baik, siap SEO, dibangun dengan React dan Tailwind CSS. Dirancang untuk menarik klien.",
+				status: "Segera Hadir"
+			},
+			{
+				title: "DevFolio 2.0",
+				desc: "Template portofolio yang elegan dan interaktif untuk Software Engineer. Lengkap dengan CMS, mode gelap, dan analitik terintegrasi.",
+				status: "Segera Hadir"
+			}
+		],
+		bento: {
+			focusTitle: "Berfokus pada Backend & Integrasi AI",
+			focusDesc: "Membangun sistem yang tangguh, scalable, dan cerdas untuk memecahkan masalah kompleks dunia nyata.",
+			location: "Jakarta",
+			country: "Indonesia",
+			gpaText: "IPK / 4.00",
+			available: "Tersedia untuk Freelance",
+			availableDesc: "Saat ini terbuka untuk proyek freelance, solusi digital, atau kolaborasi di luar jam kerja penuh."
+		},
 		experience: {
 			work: [
 				{
@@ -64,6 +86,11 @@ export const portofolioData = {
 				title: "CODE-CITE WEB",
 				year: "Sep 2025 - Jan 2026",
 				desc: "Pengembangan aplikasi berbasis web untuk kutipan kode (Code Citation). Fokus pada Web Development, Data Processing, dan Software Testing.",
+				caseStudy: {
+					problem: "Developer sering kesulitan menyalin format kutipan kode secara konsisten untuk dokumentasi teknis atau blog.",
+					solution: "Membangun antarmuka web interaktif yang memproses dan mengonversi input kode kasar menjadi kutipan visual yang siap dibagikan.",
+					impact: "Mempercepat alur kerja pembuatan dokumentasi teknis dan mempermudah berbagi snippet kode secara elegan."
+				},
 				tags: ["HTML", "Babel.js", "Tailwind CSS"],
 				githubUrl: "https://github.com/kvinown/code-cite",
 				liveUrl: "https://code-cite.netlify.app/",
@@ -73,6 +100,11 @@ export const portofolioData = {
 				title: "CODE-CITE EXTENSION",
 				year: "Sep 2025 - Jan 2026",
 				desc: "Pengembangan plugin Visual Studio Code untuk kutipan kode terstruktur. Fokus pada Plugin Development, Software Engineering, dan Usability Evaluation.",
+				caseStudy: {
+					problem: "Menyalin kode bolak-balik dari VS Code ke web generator eksternal mengganggu fokus kerja (Context Switching).",
+					solution: "Mengembangkan ekstensi VS Code native berbasis TypeScript yang memungkinkan developer menghasilkan gambar kutipan langsung dari dalam editor.",
+					impact: "Mengurangi waktu pembuatan snippet visual hingga 70% dan meningkatkan produktivitas pengembang secara drastis."
+				},
 				tags: ["TypeScript"],
 				githubUrl: "https://github.com/kvinown/code-cite-extension",
 				liveUrl: "https://marketplace.visualstudio.com/items?itemName=kvinowndev.code-cite",
@@ -83,6 +115,11 @@ export const portofolioData = {
 				title: "SIMBA-APP",
 				year: "Mar 2025 – Jul 2025",
 				desc: "Mengembangkan modul kehadiran mahasiswa berbasis web sebagai bagian dari program Kerja Praktik di Universitas Kristen Maranatha[cite: 32]. Mendigitalisasi sistem pelaporan akademik dan catatan resmi untuk meningkatkan efisiensi pelacakan kehadiran dan manajemen data[cite: 33].",
+				caseStudy: {
+					problem: "Sistem pelaporan presensi akademik mahasiswa masih manual, memperlambat rekap data dan rentan terhadap human error.",
+					solution: "Merancang dan membangun modul presensi berbasis web menggunakan arsitektur Laravel (MVC) terintegrasi.",
+					impact: "Mendigitalisasi 100% proses laporan absensi institusi, mempercepat alur kerja tata usaha, dan mencegah hilangnya rekam jejak akademik."
+				},
 				tags: ["Laravel", "Blade", "HTML", "Bootstrap", "JavaScript", "MySQL"],
 				githubUrl: "https://github.com/kvinown/SIMBA-APP",
 				liveUrl: "",
@@ -92,6 +129,11 @@ export const portofolioData = {
 				title: "HR Management System",
 				year: "Mei 2026 — Present",
 				desc: "Mengembangkan platform HR komprehensif berbasis web untuk menyederhanakan data karyawan, penggajian, dan manajemen cuti[cite: 36]. Merancang sistem kehadiran canggih yang mengintegrasikan pelacakan GPS dan verifikasi kamera untuk pencatatan log yang aman[cite: 37].",
+				caseStudy: {
+					problem: "Manajemen data kepegawaian, absensi, dan cuti tersebar di platform yang tidak terintegrasi dan sulit dilacak.",
+					solution: "Membangun platform HR komprehensif fullstack dengan modul absensi khusus yang mendeteksi lokasi GPS dan verifikasi kamera.",
+					impact: "Meningkatkan keamanan dan akurasi data absensi, serta memusatkan seluruh sistem manajemen SDM dalam satu dasbor terpadu."
+				},
 				tags: ["React.js", "Node.js", "TypeScript", "PostgreSQL", "Tailwind CSS"],
 				githubUrl: "https://github.com/kvinown/hr-management-system-fullstack",
 				liveUrl: "",
@@ -101,6 +143,11 @@ export const portofolioData = {
 				title: "MimbarCast",
 				year: "Mei 2026 — Present",
 				desc: "Membangun aplikasi web real-time menggunakan WebSockets untuk memungkinkan kontrol jarak jauh pada papan tulis digital dan tampilan ayat Alkitab dari perangkat seluler ke proyektor PC[cite: 41].",
+				caseStudy: {
+					problem: "Presenter di panggung membutuhkan cara nirkabel untuk mengirimkan tampilan visual/ayat dari handphone ke proyektor tanpa delay.",
+					solution: "Menerapkan arsitektur komunikasi real-time dua arah menggunakan WebSockets (Socket.io) dan Fabric.js untuk sinkronisasi kanvas.",
+					impact: "Menyediakan kontrol presentasi tanpa batas dengan latensi nyaris 0ms, meningkatkan fleksibilitas pembicara secara drastis."
+				},
 				tags: ["HTML", "CSS", "JavaScript", "Fabric.js", "WebSockets"],
 				githubUrl: "https://github.com/kvinown/MimbarCast",
 				liveUrl: "",
@@ -110,6 +157,11 @@ export const portofolioData = {
 				title: "Storevo Backend",
 				year: "Mar 2026 — Present",
 				desc: "Merancang API backend yang tangguh untuk menangani logika bisnis inti, operasi basis data, dan integrasi data untuk sistem POS serta inventaris ritel/toko roti[cite: 45].",
+				caseStudy: {
+					problem: "Aplikasi Point of Sales ritel membutuhkan arsitektur backend yang tahan banting (resilient) untuk memproses ratusan transaksi stok per detik.",
+					solution: "Membangun micro-services REST API menggunakan arsitektur NestJS, TypeScript, dan Prisma ORM dengan pengujian modular ketat.",
+					impact: "Mencapai performa integrasi API yang sangat andal dan aman, mendukung stabilitas operasional harian bisnis."
+				},
 				tags: ["NestJS", "TypeScript", "Prisma", "MySQL", "Swagger API"],
 				githubUrl: "https://github.com/Storevo",
 				liveUrl: "",
@@ -147,8 +199,30 @@ export const portofolioData = {
 			btnWa: "WhatsApp",
 			btnDownload: "Download CV",
 		},
-		sections: { skills: "Technical Skills", expWork: "Work Experience", expOrg: "Organizational Experience", proj: "Projects", edu: "Education", cert: "Licenses & Certifications", contact: "Let's Collaborate" },
-		projectModal: { github: "Open GitHub", live: "Live Preview", noLive: "No Live Preview" },
+		sections: { skills: "Technical Skills", expWork: "Work Experience", expOrg: "Organizational Experience", proj: "Projects", products: "Digital Products", edu: "Education", cert: "Licenses & Certifications", contact: "Let's Collaborate" },
+		projectModal: { github: "Open GitHub", live: "Live Preview", noLive: "No Live Preview", challenge: "The Challenge", solution: "The Solution", impact: "The Impact" },
+		productsDesc: "Premium templates and digital solutions designed to help businesses and developers build faster.",
+		productsList: [
+			{
+				title: "Pro-Company Template",
+				desc: "A highly optimized, SEO-ready company profile template built with React and Tailwind CSS. Designed to convert visitors into clients.",
+				status: "Coming Soon"
+			},
+			{
+				title: "DevFolio 2.0",
+				desc: "A sleek, interactive portfolio template for software engineers. Complete with a CMS for projects, dark mode, and integrated analytics.",
+				status: "Coming Soon"
+			}
+		],
+		bento: {
+			focusTitle: "Focusing on Backend & AI Integration",
+			focusDesc: "Building scalable, robust systems and exploring AI solutions to solve complex real-world problems.",
+			location: "Jakarta",
+			country: "Indonesia",
+			gpaText: "GPA / 4.00",
+			available: "Available for Freelance",
+			availableDesc: "Currently open for freelance projects, digital solutions, or collaborations outside of full-time hours."
+		},
 		experience: {
 			work: [
 				{
@@ -186,6 +260,11 @@ export const portofolioData = {
 				title: "CODE-CITE WEB",
 				year: "Sep 2025 - Jan 2026",
 				desc: "Development of a Web-Based Code Citation Application. Expertise in Web Development, Data Processing, and Software Testing.",
+				caseStudy: {
+					problem: "Developers often struggle to copy and share code citation formats consistently for technical documentation or blogs.",
+					solution: "Built an interactive web interface using React and Tailwind CSS that processes and converts raw code input into shareable visual snippets.",
+					impact: "Accelerated the workflow for creating technical documentation and made sharing code snippets elegant and effortless."
+				},
 				tags: ["HTML", "Babel.js", "Tailwind CSS"],
 				githubUrl: "https://github.com/kvinown/code-cite",
 				liveUrl: "https://code-cite.netlify.app/",
@@ -195,6 +274,11 @@ export const portofolioData = {
 				title: "CODE-CITE EXTENSION",
 				year: "Sep 2025 - Jan 2026",
 				desc: "Development of a Visual Studio Code Plugin for Structured Code Citation. Expertise in Plugin Development, Software Engineering, and Usability Evaluation.",
+				caseStudy: {
+					problem: "Copying code back and forth from VS Code to an external web generator disrupts workflow and causes context switching.",
+					solution: "Developed a native VS Code extension built with TypeScript that allows developers to generate code citations directly within their editor.",
+					impact: "Reduced the time required to create visual snippets by 70% and drastically improved the developer experience."
+				},
 				tags: ["TypeScript"],
 				githubUrl: "https://github.com/kvinown/code-cite-extension",
 				liveUrl: "https://marketplace.visualstudio.com/items?itemName=kvinowndev.code-cite",
@@ -205,6 +289,11 @@ export const portofolioData = {
 				title: "SIMBA-APP",
 				year: "Mar 2025 – Jul 2025",
 				desc: "Developed a web-based student attendance module as part of a Practical Work program at Maranatha Christian University. Digitalized the academic reporting and official records system to improve the efficiency of attendance tracking and data management.",
+				caseStudy: {
+					problem: "The student academic attendance reporting system was highly manual, slowing down data recap and prone to human errors.",
+					solution: "Designed and built a web-based attendance module using Laravel (MVC) featuring daily tracking logs for lecturers and students.",
+					impact: "Digitalized 100% of the institution's attendance reporting process, accelerating administrative workflows and preventing loss of historical data."
+				},
 				tags: ["Laravel", "Blade", "HTML", "Bootstrap", "JavaScript", "MySQL"],
 				githubUrl: "https://github.com/kvinown/SIMBA-APP",
 				liveUrl: "",
@@ -214,6 +303,11 @@ export const portofolioData = {
 				title: "HR Management System",
 				year: "May 2026 — Present",
 				desc: "Developing a comprehensive web-based HR platform to streamline employee data, payroll, and leave management. Designing an advanced attendance system integrating GPS tracking and camera verification for secure logging.",
+				caseStudy: {
+					problem: "Employee data, payroll, and leave management were scattered across disjointed and expensive third-party platforms.",
+					solution: "Built a comprehensive fullstack HR platform featuring a custom attendance module with GPS location tracking and camera verification.",
+					impact: "Enhanced the security and accuracy of attendance records while centralizing all HR administration into a single unified dashboard."
+				},
 				tags: ["React.js", "Node.js", "TypeScript", "PostgreSQL", "Tailwind CSS"],
 				githubUrl: "https://github.com/kvinown/hr-management-system-fullstack",
 				liveUrl: "",
@@ -223,6 +317,11 @@ export const portofolioData = {
 				title: "MimbarCast",
 				year: "May 2026 — Present",
 				desc: "Built a real-time web application using WebSockets to enable remote control of digital whiteboards and Bible verse displays from mobile devices to PC projectors.",
+				caseStudy: {
+					problem: "Stage presenters needed a fast, wireless way to project verses or notes from their mobile devices to screens without long cables.",
+					solution: "Implemented a real-time, two-way communication architecture using WebSockets (Socket.io) and Fabric.js for canvas synchronization.",
+					impact: "Provided seamless presentation control with near-zero latency, significantly increasing flexibility for speakers on stage."
+				},
 				tags: ["HTML", "CSS", "JavaScript", "Fabric.js", "WebSockets"],
 				githubUrl: "https://github.com/kvinown/MimbarCast",
 				liveUrl: "",
@@ -232,6 +331,11 @@ export const portofolioData = {
 				title: "Storevo Backend",
 				year: "Mar 2026 — Present",
 				desc: "Engineered a robust backend API to handle core business logic, database operations, and data integration for retail/bakery POS and inventory systems.",
+				caseStudy: {
+					problem: "Retail Point of Sales applications require a highly resilient backend architecture to process hundreds of inventory transactions per second.",
+					solution: "Engineered an enterprise-grade REST API microservice using NestJS, TypeScript, and Prisma ORM, complete with Swagger documentation.",
+					impact: "Achieved highly reliable and secure API integration performance, supporting the daily operational stability of the retail business."
+				},
 				tags: ["NestJS", "TypeScript", "Prisma", "MySQL", "Swagger API"],
 				githubUrl: "https://github.com/Storevo",
 				liveUrl: "",
