@@ -10,9 +10,10 @@ interface NavbarProps {
 	setTheme: (theme: "light" | "dark") => void;
 	t: any;
 	c: (lightClass: string, darkClass: string) => string;
+	setIsCliMode?: (val: boolean) => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ lang, setLang, theme, setTheme, t, c }) => {
+export const Navbar: React.FC<NavbarProps> = ({ lang, setLang, theme, setTheme, t, c, setIsCliMode }) => {
 	const [isNavOpen, setIsNavOpen] = useState(false);
 	const [activeSection, setActiveSection] = useState("hero");
 
@@ -90,6 +91,14 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, setLang, theme, setTheme, 
 							setTheme={setTheme}
 							c={c}
 						/>
+						{setIsCliMode && (
+							<button
+								aria-label="Toggle CLI Mode"
+								onClick={() => setIsCliMode(true)}
+								className={`p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors ${c("text-slate-600", "text-slate-300")}`}>
+								<Terminal size={18} />
+							</button>
+						)}
 					</div>
 				</div>
 
@@ -108,6 +117,14 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, setLang, theme, setTheme, 
 							<TextAnimation text={lang} />
 						</span>
 					</button>
+					{setIsCliMode && (
+						<button
+							aria-label="Toggle CLI Mode"
+							onClick={() => setIsCliMode(true)}
+							className={`p-1.5 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors ${c("text-slate-600", "text-slate-300")}`}>
+							<Terminal size={18} />
+						</button>
+					)}
 					<button
 						aria-label="Toggle navigation menu"
 						className={c("text-slate-800", "text-slate-200")}

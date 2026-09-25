@@ -10,6 +10,8 @@ import { CertificationModal } from "../components/CertificationModal";
 import { ProjectModal } from "../components/ProjectModal";
 import { CustomCursor } from "../components/CustomCursor";
 import { BentoGrid } from "../components/BentoGrid";
+import { ExperienceTimeline } from "../components/ExperienceTimeline";
+import { TilSection } from "../components/TilSection";
 
 export const HomePage = ({ t, c, theme, portofolioData }: any) => {
 	const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success">("idle");
@@ -199,88 +201,18 @@ export const HomePage = ({ t, c, theme, portofolioData }: any) => {
 				<FadeInSection>
 					<section id="experience">
 						<div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-12">
-							<div>
-								<h3 className={`text-2xl font-bold mb-8 flex items-center gap-3 ${c("text-slate-900", "text-white")}`}>
-									<Briefcase className="text-blue-500" /> <TextAnimation text={t.sections.expWork} />
-								</h3>
-								<div className={`space-y-10 border-l-2 pl-6 md:pl-8 ml-3 transition-colors duration-300 ${c("border-blue-200", "border-slate-700")}`}>
-									{t.experience.work.map((exp: any, idx: number) => (
-										<div
-											key={idx}
-											className="relative">
-											<div className={`absolute -left-[41px] md:-left-[49px] bg-blue-500 p-2 rounded-full border-4 transition-colors duration-300 ${c("border-slate-50", "border-slate-900")}`}>
-												<Server
-													size={14}
-													className="text-white"
-												/>
-											</div>
-											<div className={`p-6 rounded-xl border transition-colors duration-300 hover:border-blue-500/50 ${c("bg-white border-slate-200", "bg-slate-800/80 border-slate-700")}`}>
-												<span className="text-sm font-bold text-blue-500 mb-1 block">{exp.period}</span>
-												<h4 className={`text-xl font-bold mb-1 ${c("text-slate-900", "text-white")}`}>
-													<TextAnimation text={exp.role} />
-												</h4>
-												<p className={`font-medium mb-4 ${c("text-slate-600", "text-slate-400")}`}>{exp.place}</p>
-												<ul className="space-y-2">
-													{exp.points.map((point: string, pIdx: number) => (
-														<li
-															key={pIdx}
-															className={`flex items-start gap-2 text-sm leading-relaxed ${c("text-slate-600", "text-slate-300")}`}>
-															<ChevronRight
-																size={16}
-																className="text-blue-500 shrink-0 mt-0.5"
-															/>
-															<span>
-																<TextAnimation text={point} />
-															</span>
-														</li>
-													))}
-												</ul>
-											</div>
-										</div>
-									))}
-								</div>
-							</div>
-							<div>
-								<h3 className={`text-2xl font-bold mb-8 flex items-center gap-3 ${c("text-slate-900", "text-white")}`}>
-									<Users className="text-blue-500" /> <TextAnimation text={t.sections.expOrg} />
-								</h3>
-								<div className={`space-y-10 border-l-2 pl-6 md:pl-8 ml-3 transition-colors duration-300 ${c("border-blue-200", "border-slate-700")}`}>
-									{t.experience.org.map((exp: any, idx: number) => (
-										<div
-											key={idx}
-											className="relative">
-											<div className={`absolute -left-[41px] md:-left-[49px] bg-slate-400 p-2 rounded-full border-4 transition-colors duration-300 ${c("border-slate-50", "border-slate-900")}`}>
-												<LayoutIcon
-													size={14}
-													className="text-white"
-												/>
-											</div>
-											<div className={`p-6 rounded-xl border transition-colors duration-300 hover:border-slate-400/50 ${c("bg-white border-slate-200", "bg-slate-800/80 border-slate-700")}`}>
-												<span className={`text-sm font-bold mb-1 block ${c("text-slate-500", "text-slate-400")}`}>{exp.period}</span>
-												<h4 className={`text-xl font-bold mb-1 ${c("text-slate-900", "text-white")}`}>
-													<TextAnimation text={exp.role} />
-												</h4>
-												<p className={`font-medium mb-4 ${c("text-slate-600", "text-slate-400")}`}>{exp.place}</p>
-												<ul className="space-y-2">
-													{exp.points.map((point: string, pIdx: number) => (
-														<li
-															key={pIdx}
-															className={`flex items-start gap-2 text-sm leading-relaxed ${c("text-slate-600", "text-slate-300")}`}>
-															<ChevronRight
-																size={16}
-																className="text-blue-500 shrink-0 mt-0.5"
-															/>
-															<span>
-																<TextAnimation text={point} />
-															</span>
-														</li>
-													))}
-												</ul>
-											</div>
-										</div>
-									))}
-								</div>
-							</div>
+							<ExperienceTimeline
+								items={t.experience.work}
+								title={t.sections.expWork}
+								icon={<Briefcase className="text-blue-500" />}
+								c={c}
+							/>
+							<ExperienceTimeline
+								items={t.experience.org}
+								title={t.sections.expOrg}
+								icon={<Users className="text-blue-500" />}
+								c={c}
+							/>
 						</div>
 					</section>
 				</FadeInSection>
@@ -288,6 +220,14 @@ export const HomePage = ({ t, c, theme, portofolioData }: any) => {
 				<FadeInSection>
 					<TechDivider theme={theme} />
 				</FadeInSection>
+
+				{/* TIL SECTION (Hidden for now as requested)
+				<TilSection t={t} c={c} />
+
+				<FadeInSection>
+					<TechDivider theme={theme} />
+				</FadeInSection>
+				*/}
 
 				{/* PROJECTS */}
 				<FadeInSection>

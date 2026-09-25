@@ -7,7 +7,7 @@ export const portofolioData = {
 		github: "https://github.com/kvinown",
 		linkedin: "http://www.linkedin.com/in/kevin-owen-kvinown",
 		web: "https://kvinown.netlify.app",
-		cvFileName: "Resume CV Kevin Owen(2).pdf",
+		cvFileName: "Resume CV Kevin Owen (2).pdf",
 	},
 	skills: [
 		{ id: 1, icon: "server", title: "Programming Languages", items: ["PHP", "TypeScript", "Python", "Kotlin", "JavaScript", "Java"] },
@@ -25,9 +25,54 @@ export const portofolioData = {
 			btnWa: "WhatsApp",
 			btnDownload: "Unduh CV",
 		},
-		sections: { skills: "Keahlian Teknis", expWork: "Pengalaman Kerja", expOrg: "Pengalaman Organisasi", proj: "Proyek", products: "Produk Digital", edu: "Pendidikan", cert: "Sertifikasi & Penghargaan", contact: "Mari Berkolaborasi" },
+		sections: { skills: "Keahlian Teknis", expWork: "Pengalaman Kerja", expOrg: "Pengalaman Organisasi", proj: "Proyek", products: "Produk Digital", til: "Today I Learned (TIL)", edu: "Pendidikan", cert: "Sertifikasi & Penghargaan", contact: "Mari Berkolaborasi" },
 		projectModal: { github: "Buka GitHub", live: "Live Preview", noLive: "Tidak Ada Live Preview", challenge: "Tantangan", solution: "Solusi", impact: "Dampak" },
 		productsDesc: "Template premium dan solusi digital yang dirancang untuk membantu bisnis dan developer membangun lebih cepat.",
+		tilDesc: "Potongan kode dan wawasan teknis harian yang saya temukan saat membangun sistem perangkat lunak yang kompleks.",
+		tilList: [
+			{
+				date: "Sep 2026",
+				category: "Laravel",
+				title: "Optimasi Query N+1 di Laravel",
+				desc: "Daripada melooping query yang berat, gunakan eager loading dengan method `with()` saat memanggil relasi. Ini dapat mencegah masalah N+1 yang memperlambat respon server hingga 80%.",
+				code: `// ❌ Bad (N+1 Problem)
+$users = User::all();
+foreach($users as $user) {
+    echo $user->profile->name;
+}
+
+// ✅ Good (Eager Loading)
+$users = User::with('profile')->get();`
+			},
+			{
+				date: "Agu 2026",
+				category: "React / Vite",
+				title: "Meningkatkan Performa SEO SPA",
+				desc: "Meskipun SPA menggunakan React kurang ramah SEO secara bawaan, kita bisa mengatasinya dengan menyuntikkan JSON-LD Structured Data dan tag Meta OG dinamis langsung ke index.html.",
+				code: `<!-- Menyuntikkan JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Person",
+  "name": "Kevin Owen",
+  "jobTitle": "Fullstack Developer"
+}
+</script>`
+			},
+			{
+				date: "Jul 2026",
+				category: "NestJS",
+				title: "Keuntungan Arsitektur Modular",
+				desc: "Menggunakan pola Dependency Injection (DI) pada NestJS membuat unit testing menjadi jauh lebih mudah, karena module services menjadi loosely coupled.",
+				code: `@Module({
+  imports: [PrismaModule],
+  controllers: [UserController],
+  providers: [UserService],
+  exports: [UserService]
+})
+export class UserModule {}`
+			}
+		],
 		productsList: [
 			{
 				title: "Pro-Company Template",
@@ -199,9 +244,54 @@ export const portofolioData = {
 			btnWa: "WhatsApp",
 			btnDownload: "Download CV",
 		},
-		sections: { skills: "Technical Skills", expWork: "Work Experience", expOrg: "Organizational Experience", proj: "Projects", products: "Digital Products", edu: "Education", cert: "Licenses & Certifications", contact: "Let's Collaborate" },
+		sections: { skills: "Technical Skills", expWork: "Work Experience", expOrg: "Organizational Experience", proj: "Projects", products: "Digital Products", til: "Today I Learned (TIL)", edu: "Education", cert: "Licenses & Certifications", contact: "Let's Collaborate" },
 		projectModal: { github: "Open GitHub", live: "Live Preview", noLive: "No Live Preview", challenge: "The Challenge", solution: "The Solution", impact: "The Impact" },
 		productsDesc: "Premium templates and digital solutions designed to help businesses and developers build faster.",
+		tilDesc: "Code snippets and daily technical insights I discovered while building complex software systems.",
+		tilList: [
+			{
+				date: "Sep 2026",
+				category: "Laravel",
+				title: "N+1 Query Optimization in Laravel",
+				desc: "Instead of running heavy loops on queries, always use eager loading with the `with()` method when calling relations. This prevents the N+1 problem which can slow down server response by up to 80%.",
+				code: `// ❌ Bad (N+1 Problem)
+$users = User::all();
+foreach($users as $user) {
+    echo $user->profile->name;
+}
+
+// ✅ Good (Eager Loading)
+$users = User::with('profile')->get();`
+			},
+			{
+				date: "Aug 2026",
+				category: "React / Vite",
+				title: "Boosting SPA SEO Performance",
+				desc: "Even though SPAs are not inherently SEO-friendly, we can overcome this by injecting JSON-LD Structured Data and dynamic Open Graph Meta tags directly into the index.html file.",
+				code: `<!-- Injecting JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Person",
+  "name": "Kevin Owen",
+  "jobTitle": "Fullstack Developer"
+}
+</script>`
+			},
+			{
+				date: "Jul 2026",
+				category: "NestJS",
+				title: "Benefits of Modular Architecture",
+				desc: "Using the Dependency Injection (DI) pattern in NestJS makes unit testing significantly easier, as service modules become loosely coupled.",
+				code: `@Module({
+  imports: [PrismaModule],
+  controllers: [UserController],
+  providers: [UserService],
+  exports: [UserService]
+})
+export class UserModule {}`
+			}
+		],
 		productsList: [
 			{
 				title: "Pro-Company Template",
