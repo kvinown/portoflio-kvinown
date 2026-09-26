@@ -51,7 +51,7 @@ const SequentialLines = ({
 
 export const TerminalMode: React.FC<TerminalModeProps> = ({ setIsCliMode, portofolioData, lang }) => {
 	const t = portofolioData[lang];
-	const [cwd, setCwd] = useState("C:\\Users\\kvinown");
+	const [cwd, setCwd] = useState("C:\\Software\\Engineer\\kvinown");
 	
 	const asciiArt = `
   _  ____      _______ _   _  ______          ___   _ 
@@ -80,6 +80,11 @@ export const TerminalMode: React.FC<TerminalModeProps> = ({ setIsCliMode, portof
 	const [currentLines, setCurrentLines] = useState<React.ReactNode[]>([]);
 	const [currentDelay, setCurrentDelay] = useState(50);
 	
+	// State AI Mode
+	const [isAiMode, setIsAiMode] = useState(false);
+	const [isFetchingAI, setIsFetchingAI] = useState(false);
+	const [aiHistory, setAiHistory] = useState<{role: string, text: string}[]>([]);
+	
 	// History array for UP/DOWN arrows
 	const [cmdHistory, setCmdHistory] = useState<string[]>([]);
 	const [historyIndex, setHistoryIndex] = useState<number>(-1);
@@ -90,9 +95,9 @@ export const TerminalMode: React.FC<TerminalModeProps> = ({ setIsCliMode, portof
 	const projectFiles = t.projects.map((p: any) => p.title.toLowerCase().replace(/[\s&]+/g, '-') + ".md");
 	
 	const getAvailableFiles = () => {
-		if (cwd === "C:\\Users\\kvinown") {
+		if (cwd === "C:\\Portofolio\\kvinown") {
 			return ["skills.txt", "contact.txt", "about.md", "experience.txt", "education.txt", "resume.pdf", "projects"];
-		} else if (cwd === "C:\\Users\\kvinown\\projects") {
+		} else if (cwd === "C:\\Portofolio\\kvinown\\projects") {
 			return projectFiles;
 		}
 		return [];
@@ -104,10 +109,10 @@ export const TerminalMode: React.FC<TerminalModeProps> = ({ setIsCliMode, portof
 
 	useEffect(() => {
 		scrollToBottom();
-		if (!isExecuting) {
+		if (!isExecuting && !isFetchingAI) {
 			inputRef.current?.focus();
 		}
-	}, [history, isExecuting]);
+	}, [history, isExecuting, isFetchingAI]);
 
 	const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
 		if (e.key === "ArrowUp") {
@@ -144,9 +149,9 @@ export const TerminalMode: React.FC<TerminalModeProps> = ({ setIsCliMode, portof
 		}
 	};
 
-	const handleCommand = (e: React.FormEvent) => {
+	const handleCommand = async (e: React.FormEvent) => {
 		e.preventDefault();
-		if (!input.trim() || isExecuting) return;
+		if (!input.trim() || isExecuting || isFetchingAI) return;
 
 		const rawCmd = input.trim();
 		const cmd = rawCmd.toLowerCase();
@@ -161,9 +166,60 @@ export const TerminalMode: React.FC<TerminalModeProps> = ({ setIsCliMode, portof
 		setHistory(prev => [
 			...prev,
 			<div key={prev.length + "_cmd"}>
-				<span className="text-slate-300">PS {cwd}&gt;</span> {input}
+				{isAiMode ? <span className="text-purple-400 font-bold">KvinBot&gt;</span> : <span className="text-slate-300">PS {cwd}&gt;</span>} {input}
 			</div>
 		]);
+
+		if (isAiMode) {
+			if (cmd === "exit" || cmd === "stop" || cmd === "quit") {
+				setIsAiMode(false);
+				setHistory(prev => [
+					...prev,
+					<div key={prev.length + "_out"} className="text-yellow-400 mb-4 mt-1">
+						Shutting down KvinBot AI...<br/>
+						Returned to Windows PowerShell.
+					</div>
+				]);
+				setInput("");
+				return;
+			}
+
+			setIsFetchingAI(true);
+			setInput("");
+			
+			try {
+				const response = await fetch("/.netlify/functions/chat", {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({ message: rawCmd, history: aiHistory.slice(-5) })
+				});
+				
+				const data = await response.json();
+				if (!response.ok) throw new Error(data.error || "Gagal menghubungi server");
+				
+				// Update AI History
+				setAiHistory(prev => [
+					...prev, 
+					{ role: "user", text: rawCmd },
+					{ role: "model", text: data.reply }
+				]);
+
+				// Split AI response by newlines to render sequentially
+				const lines = data.reply.split("\n");
+				const renderedLines = lines.map((l: string, idx: number) => <span key={idx} className={l.startsWith("-") || l.startsWith("*") || /^\d+\./.test(l) ? "text-slate-300 ml-4 block" : "text-slate-200 block"}>{l}</span>);
+				
+				setIsFetchingAI(false);
+				setIsExecuting(true);
+				setCurrentLines(renderedLines);
+				setCurrentDelay(30);
+			} catch (error: any) {
+				setIsFetchingAI(false);
+				setIsExecuting(true);
+				setCurrentLines([<span className="text-red-400">Error: {error.message || "Gagal menghubungi server"}</span>]);
+				setCurrentDelay(10);
+			}
+			return; // Selesai untuk AI mode
+		}
 
 		const args = rawCmd.split(" ");
 		const baseCmd = args[0].toLowerCase();
@@ -177,7 +233,7 @@ export const TerminalMode: React.FC<TerminalModeProps> = ({ setIsCliMode, portof
 					<div className="ml-4"><span className="text-yellow-400">dir / ls</span> - List files and directories</div>,
 					<div className="ml-4"><span className="text-yellow-400">cd [dir]</span> - Change directory</div>,
 					<div className="ml-4"><span className="text-yellow-400">type / cat [file]</span> - Read file contents</div>,
-					<div className="ml-4"><span className="text-yellow-400">start [file/link]</span> - Open file or link (e.g., start resume, start github)</div>,
+					<div className="ml-4"><span className="text-yellow-400">start [arg]</span> - Open file/link, or start programs (e.g. start resume, start github, start kvinbot)</div>,
 					<div className="ml-4"><span className="text-yellow-400">date</span> - Show current date and time</div>,
 					<div className="ml-4"><span className="text-yellow-400">cls / clear</span> - Clear terminal output</div>,
 					<div className="ml-4"><span className="text-yellow-400">ping</span> - Test connection to backend</div>,
@@ -217,17 +273,17 @@ export const TerminalMode: React.FC<TerminalModeProps> = ({ setIsCliMode, portof
 				break;
 			case "cd":
 				if (arg1 === "projects") {
-					if (cwd === "C:\\Users\\kvinown") {
-						setCwd("C:\\Users\\kvinown\\projects");
+					if (cwd === "C:\\Portofolio\\kvinown") {
+						setCwd("C:\\Portofolio\\kvinown\\projects");
 						outputLines = []; // cd typically returns nothing on success
 					} else {
 						outputLines = [<span className="text-red-400">cd: projects: No such file or directory</span>];
 					}
 				} else if (arg1 === ".." || arg1 === "../" || arg1 === "cd..") {
-					setCwd("C:\\Users\\kvinown");
+					setCwd("C:\\Portofolio\\kvinown");
 					outputLines = [];
 				} else if (arg1 === "~" || arg1 === "") {
-					setCwd("C:\\Users\\kvinown");
+					setCwd("C:\\Portofolio\\kvinown");
 					outputLines = [];
 				} else {
 					outputLines = [<span className="text-red-400">cd: Cannot find path '{arg1}' because it does not exist.</span>];
@@ -237,7 +293,7 @@ export const TerminalMode: React.FC<TerminalModeProps> = ({ setIsCliMode, portof
 			case "dir":
 			case "ls":
 				delay = 30;
-				if (cwd === "C:\\Users\\kvinown") {
+				if (cwd === "C:\\Portofolio\\kvinown") {
 					outputLines = [
 						<span><br/>    Directory: {cwd}<br/><br/></span>,
 						<div className="flex border-b border-slate-600 pb-1 mb-1 max-w-2xl">
@@ -268,7 +324,7 @@ export const TerminalMode: React.FC<TerminalModeProps> = ({ setIsCliMode, portof
 							<span className="w-1/4">-a----</span><span className="w-1/4">{new Date().toLocaleDateString()}</span><span className="w-1/4 text-right">845</span><span className="w-1/4 pl-4 text-slate-100">skills.txt</span>
 						</div>
 					];
-				} else if (cwd === "C:\\Users\\kvinown\\projects") {
+				} else if (cwd === "C:\\Portofolio\\kvinown\\projects") {
 					outputLines = [
 						<span><br/>    Directory: {cwd}<br/><br/></span>,
 						<div className="flex border-b border-slate-600 pb-1 mb-1 max-w-2xl">
@@ -297,7 +353,7 @@ export const TerminalMode: React.FC<TerminalModeProps> = ({ setIsCliMode, portof
 					break;
 				}
 
-				if (cwd === "C:\\Users\\kvinown") {
+				if (cwd === "C:\\Portofolio\\kvinown") {
 					if (file.toLowerCase() === "skills.txt") {
 						outputLines = portofolioData.skills.flatMap((skill: any) => [
 							<span className="text-green-400 mt-2 block"># {skill.title}</span>,
@@ -335,13 +391,14 @@ export const TerminalMode: React.FC<TerminalModeProps> = ({ setIsCliMode, portof
 						outputLines = t.education.flatMap((edu: any) => [
 							<span className="text-green-400 font-bold">{edu.degree}</span>,
 							<span><span className="text-white">{edu.school}</span> <span className="text-slate-400">[{edu.period}]</span></span>,
-							<span className="text-yellow-300">GPA: {edu.desc}</span>,
+							<span className="text-slate-300">{edu.desc}</span>,
+							<span className="text-yellow-300">GPA: {edu.gpa} / 4.00</span>,
 							<br/>
 						]);
 					} else {
 						outputLines = [<span className="text-red-400">type: Cannot find path '{cwd}\{file}' because it does not exist.</span>];
 					}
-				} else if (cwd === "C:\\Users\\kvinown\\projects") {
+				} else if (cwd === "C:\\Portofolio\\kvinown\\projects") {
 					const matchedProject = t.projects.find((p: any) => (p.title.toLowerCase().replace(/[\s&]+/g, '-') + ".md") === file.toLowerCase());
 					
 					if (matchedProject) {
@@ -399,8 +456,20 @@ export const TerminalMode: React.FC<TerminalModeProps> = ({ setIsCliMode, portof
 					setTimeout(() => {
 						window.open(`mailto:${portofolioData.contacts.email}`, "_blank");
 					}, 500);
+				} else if (arg1 === "kvinbot") {
+					setIsAiMode(true);
+					setAiHistory([]); // Reset history on new boot
+					outputLines = [
+						<span className="text-blue-400 font-bold block mb-1">Initializing KvinBot AI Engine v1.0.0...</span>,
+						<span className="text-slate-300 block">Loading portfolio datasets... <span className="text-green-400">[OK]</span></span>,
+						<span className="text-slate-300 block">Injecting context vectors... <span className="text-green-400">[OK]</span></span>,
+						<span className="text-slate-300 block">Establishing secure LLM uplink... <span className="text-green-400">[OK]</span></span>,
+						<span className="text-purple-400 font-bold mt-2 block border-t border-purple-800 pt-2">KvinBot is now active. You are in interactive AI mode.</span>,
+						<span className="text-slate-400 block mb-2">Type your questions below. Type 'exit' to stop KvinBot.</span>
+					];
+					delay = 600; // Boot sequence speed
 				} else {
-					outputLines = [<span className="text-red-400">start : Cannot find file or link '{arg1}'. Try 'start resume', 'start github', 'start linkedin'.</span>];
+					outputLines = [<span className="text-red-400">start : Cannot find program or file '{arg1}'. Try 'start kvinbot', 'start resume', 'start github'.</span>];
 				}
 				break;
 			default:
@@ -455,6 +524,14 @@ export const TerminalMode: React.FC<TerminalModeProps> = ({ setIsCliMode, portof
 					{history.map((item) => item)}
 				</div>
 
+				{/* Show AI Fetching State */}
+				{isFetchingAI && (
+					<div className="mb-4 mt-1">
+						<span className="text-purple-400">KvinBot is thinking</span>
+						<span className="text-purple-400 animate-pulse">...</span>
+					</div>
+				)}
+
 				{/* Currently Executing Command Output */}
 				{isExecuting && (
 					<SequentialLines 
@@ -466,9 +543,15 @@ export const TerminalMode: React.FC<TerminalModeProps> = ({ setIsCliMode, portof
 				)}
 
 				{/* Input Line (Hidden while executing) */}
-				{!isExecuting && (
+				{!isExecuting && !isFetchingAI && (
 					<form onSubmit={handleCommand} className="flex items-center mt-1">
-						<span className="text-slate-300 shrink-0 mr-2">PS {cwd}&gt;</span>
+						<span className="shrink-0 mr-2">
+							{isAiMode ? (
+								<span className="text-purple-400 font-bold">KvinBot&gt;</span>
+							) : (
+								<span className="text-slate-300">PS {cwd}&gt;</span>
+							)}
+						</span>
 						<input
 							ref={inputRef}
 							type="text"

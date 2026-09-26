@@ -213,7 +213,15 @@ export class UserModule {}`
 				category: "Backend",
 			},
 		],
-		education: { degree: "S1 Teknik Informatika", expertise: "Spesialisasi: Pemgrograman Backend dan Prompt Engineering", gpaText: "IPK Terakhir" },
+		education: [
+			{
+				school: "Universitas Kristen Maranatha",
+				degree: "S1 Teknik Informatika",
+				period: "2022 - 2026",
+				gpa: "3.73",
+				desc: "Spesialisasi: Pemrograman Backend dan Prompt Engineering"
+			}
+		],
 		certifications: [
 			{
 				title: "Code Cite — Copyright Registration",

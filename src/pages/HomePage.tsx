@@ -391,24 +391,24 @@ export const HomePage = ({ t, c, theme, portofolioData }: any) => {
 								<h3 className={`text-2xl font-bold mb-4 ${c("text-slate-900", "text-white")}`}>
 									<TextAnimation text={t.sections.edu} />
 								</h3>
-								<h4 className="text-xl text-blue-500 font-bold mb-1">Maranatha Christian University</h4>
+								<h4 className="text-xl text-blue-500 font-bold mb-1">{t.education[0].school}</h4>
 								<p className={`font-medium ${c("text-slate-700", "text-slate-200")}`}>
-									<TextAnimation text={t.education.degree} />
+									<TextAnimation text={t.education[0].degree} />
 								</p>
 								<p className={`text-sm mt-2 ${c("text-slate-500", "text-slate-400")}`}>
-									<TextAnimation text={t.education.expertise} />
+									<TextAnimation text={t.education[0].desc} />
 								</p>
 							</div>
 							<div className="mt-8 md:mt-0 text-left md:text-right">
 								<div className={`inline-block px-5 py-3 rounded-xl border transition-colors duration-300 ${c("bg-slate-50 border-slate-200", "bg-slate-900/50 border-slate-600")}`}>
 									<p className={`text-sm font-bold uppercase tracking-wider mb-1 ${c("text-slate-500", "text-slate-400")}`}>
-										<TextAnimation text={t.education.gpaText} />
+										<TextAnimation text={t.bento.gpaText} />
 									</p>
 									<p className={`text-3xl font-extrabold ${c("text-slate-900", "text-white")}`}>
-										3.73<span className={`text-xl font-medium ${c("text-slate-400", "text-slate-500")}`}>/4.00</span>
+										{t.education[0].gpa}<span className={`text-xl font-medium ${c("text-slate-400", "text-slate-500")}`}>/4.00</span>
 									</p>
 								</div>
-								<p className={`font-bold mt-4 ${c("text-slate-500", "text-slate-400")}`}>2022 - 2026</p>
+								<p className={`font-bold mt-4 ${c("text-slate-500", "text-slate-400")}`}>{t.education[0].period}</p>
 							</div>
 						</div>
 					</section>

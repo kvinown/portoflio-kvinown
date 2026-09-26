@@ -2,6 +2,7 @@ import React from "react";
 import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
 import { DataNodesBackground } from "../animations/DataNodesBackground";
+import { ChatWidget } from "./ChatWidget";
 
 // Mendefinisikan props yang dibutuhkan Layout
 interface LayoutProps {
@@ -35,6 +36,9 @@ export const Layout: React.FC<LayoutProps> = ({ lang, setLang, theme, setTheme, 
 
 			{/* FOOTER SELALU ADA DI BAWAH */}
 			<Footer t={t} c={c} />
+
+			{/* RAG Chatbot Widget */}
+			<ChatWidget c={c} />
 		</div>
 	);
 };
