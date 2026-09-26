@@ -1,9 +1,9 @@
 import { portofolioData } from '../../src/data/portofolioData';
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
-const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-3.5-flash';
-const GEMINI_FALLBACK_1 = process.env.GEMINI_FALLBACK_1 || 'gemini-3.8-flash';
-const GEMINI_FALLBACK_2 = process.env.GEMINI_FALLBACK_2 || 'gemini-3.6-flash';
+const GEMINI_MODEL = process.env.GEMINI_MODEL as string;
+const GEMINI_FALLBACK_1 = process.env.GEMINI_FALLBACK_1 as string;
+const GEMINI_FALLBACK_2 = process.env.GEMINI_FALLBACK_2 as string;
 
 export const handler = async (event: any) => {
 	// CORS Headers
