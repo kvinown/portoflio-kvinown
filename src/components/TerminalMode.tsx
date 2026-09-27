@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Terminal as TerminalIcon, X } from "lucide-react";
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 interface TerminalModeProps {
 	setIsCliMode: (val: boolean) => void;
@@ -204,9 +206,36 @@ export const TerminalMode: React.FC<TerminalModeProps> = ({ setIsCliMode, portof
 					{ role: "model", text: data.reply }
 				]);
 
-				// Split AI response by newlines to render sequentially
-				const lines = data.reply.split("\n");
-				const renderedLines = lines.map((l: string, idx: number) => <span key={idx} className={l.startsWith("-") || l.startsWith("*") || /^\d+\./.test(l) ? "text-slate-300 ml-4 block" : "text-slate-200 block"}>{l}</span>);
+				// Render AI response nicely with Markdown
+				const renderedLines = [
+					<div key="markdown-reply" className="w-full markdown-terminal text-slate-200">
+						<ReactMarkdown 
+							remarkPlugins={[remarkGfm]}
+							components={{
+								p: ({node, ...props}) => <p className="mb-3 leading-relaxed" {...props}/>,
+								a: ({node, ...props}) => <a className="text-blue-400 hover:underline font-bold" target="_blank" rel="noopener noreferrer" {...props}/>,
+								ul: ({node, ...props}) => <ul className="list-disc pl-6 mb-3 space-y-1" {...props}/>,
+								ol: ({node, ...props}) => <ol className="list-decimal pl-6 mb-3 space-y-1" {...props}/>,
+								li: ({node, ...props}) => <li className="" {...props}/>,
+								h1: ({node, ...props}) => <h1 className="text-xl font-bold text-white mb-2 mt-4" {...props}/>,
+								h2: ({node, ...props}) => <h2 className="text-lg font-bold text-white mb-2 mt-4" {...props}/>,
+								h3: ({node, ...props}) => <h3 className="text-base font-bold text-white mb-2 mt-3" {...props}/>,
+								strong: ({node, ...props}) => <strong className="font-bold text-white" {...props}/>,
+								code: ({node, inline, className, children, ...props}: any) => {
+									return inline ? (
+										<code className="bg-slate-800 text-pink-400 px-1.5 py-0.5 rounded text-[14px]" {...props}>{children}</code>
+									) : (
+										<pre className="p-4 bg-slate-900 border border-slate-700 rounded-lg overflow-x-auto my-3 text-[14px] shadow-inner">
+											<code className="text-slate-300 font-mono" {...props}>{children}</code>
+										</pre>
+									)
+								}
+							}}
+						>
+							{data.reply}
+						</ReactMarkdown>
+					</div>
+				];
 				
 				setIsFetchingAI(false);
 				setIsExecuting(true);

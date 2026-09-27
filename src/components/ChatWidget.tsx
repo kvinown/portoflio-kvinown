@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { MessageSquare, X, Send, Bot, User, Loader2 } from "lucide-react";
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 interface Message {
 	role: "user" | "model";
@@ -124,12 +126,41 @@ export const ChatWidget: React.FC<{ c: (l: string, d: string) => string }> = ({ 
 							}`}>
 								{msg.role === "user" ? <User size={16} /> : <Bot size={16} />}
 							</div>
-							<div className={`px-4 py-2.5 rounded-2xl text-[14.5px] leading-relaxed whitespace-pre-wrap shadow-sm ${
+							<div className={`px-4 py-2.5 rounded-2xl text-[14.5px] leading-relaxed shadow-sm overflow-hidden ${
 								msg.role === "user" 
 									? "bg-gradient-to-br from-blue-600 to-indigo-600 text-white rounded-tr-sm" 
 									: c("bg-white text-slate-700 border border-slate-100 rounded-tl-sm", "bg-slate-800 text-slate-200 border border-slate-700 rounded-tl-sm")
 							}`}>
-								{msg.text}
+								<ReactMarkdown 
+									remarkPlugins={[remarkGfm]}
+									components={{
+										p: ({node, ...props}) => <p className="mb-2 last:mb-0" {...props}/>,
+										a: ({node, ...props}) => <a className="text-blue-400 hover:underline" target="_blank" rel="noopener noreferrer" {...props}/>,
+										ul: ({node, ...props}) => <ul className="list-disc pl-4 mb-2" {...props}/>,
+										ol: ({node, ...props}) => <ol className="list-decimal pl-4 mb-2" {...props}/>,
+										li: ({node, ...props}) => <li className="mb-1" {...props}/>,
+										code: ({node, inline, className, children, ...props}: any) => {
+											return inline ? (
+												<code className={`px-1.5 py-0.5 rounded text-[13px] ${msg.role === "user" ? "bg-white/20" : c("bg-slate-100 text-pink-600", "bg-slate-700 text-pink-400")}`} {...props}>
+													{children}
+												</code>
+											) : (
+												<div className="rounded-lg overflow-hidden my-2 shadow-sm border border-slate-700">
+													<div className="bg-slate-800 px-3 py-1 text-xs text-slate-400 font-mono flex justify-between items-center">
+														<span>{className ? className.replace('language-', '') : 'code'}</span>
+													</div>
+													<pre className="p-3 bg-slate-900 text-slate-50 text-[13px] overflow-x-auto">
+														<code className={className} {...props}>
+															{children}
+														</code>
+													</pre>
+												</div>
+											)
+										}
+									}}
+								>
+									{msg.text}
+								</ReactMarkdown>
 							</div>
 						</div>
 					))}
