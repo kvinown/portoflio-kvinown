@@ -8,6 +8,25 @@ interface Message {
 	text: string;
 }
 
+const ThinkingText = () => {
+	const [step, setStep] = useState(0);
+	const steps = [
+		"Menganalisa pesan...",
+		"Mencari informasi...",
+		"Menyusun jawaban...",
+		"Menulis respons..."
+	];
+
+	useEffect(() => {
+		const interval = setInterval(() => {
+			setStep(s => (s < steps.length - 1 ? s + 1 : s));
+		}, 1200);
+		return () => clearInterval(interval);
+	}, [steps.length]);
+
+	return <span className="text-xs text-slate-400 ml-2 animate-pulse">{steps[step]}</span>;
+};
+
 export const ChatWidget: React.FC<{ c: (l: string, d: string) => string }> = ({ c }) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [messages, setMessages] = useState<Message[]>([
@@ -170,10 +189,13 @@ export const ChatWidget: React.FC<{ c: (l: string, d: string) => string }> = ({ 
 								<Bot size={16} />
 							</div>
 							<div className={`px-4 py-3 rounded-2xl rounded-tl-sm shadow-sm border ${c("bg-white border-slate-100", "bg-slate-800 border-slate-700")} flex items-center gap-2`}>
-								<span className="flex gap-1">
-									<span className="w-2 h-2 rounded-full bg-blue-400 animate-bounce" style={{ animationDelay: '0ms' }}></span>
-									<span className="w-2 h-2 rounded-full bg-blue-500 animate-bounce" style={{ animationDelay: '150ms' }}></span>
-									<span className="w-2 h-2 rounded-full bg-indigo-500 animate-bounce" style={{ animationDelay: '300ms' }}></span>
+								<span className="flex gap-1 items-center">
+									<span className="flex gap-1">
+										<span className="w-2 h-2 rounded-full bg-blue-400 animate-bounce" style={{ animationDelay: '0ms' }}></span>
+										<span className="w-2 h-2 rounded-full bg-blue-500 animate-bounce" style={{ animationDelay: '150ms' }}></span>
+										<span className="w-2 h-2 rounded-full bg-indigo-500 animate-bounce" style={{ animationDelay: '300ms' }}></span>
+									</span>
+									<ThinkingText />
 								</span>
 							</div>
 						</div>

@@ -51,6 +51,38 @@ const SequentialLines = ({
 	);
 };
 
+// Komponen animasi proses berpikir (Hacker style)
+const ThinkingProcess = () => {
+	const [step, setStep] = useState(0);
+	const steps = [
+		"Initializing neural link...",
+		"Parsing input context...",
+		"Searching knowledge base...",
+		"Analyzing portfolio datasets...",
+		"Synthesizing response...",
+		"Formatting output stream..."
+	];
+
+	useEffect(() => {
+		const interval = setInterval(() => {
+			setStep(s => (s < steps.length - 1 ? s + 1 : s));
+		}, 800);
+		return () => clearInterval(interval);
+	}, [steps.length]);
+
+	return (
+		<div className="mb-4 mt-1 text-slate-400 font-mono text-sm">
+			{steps.slice(0, step + 1).map((text, idx) => (
+				<div key={idx} className="flex items-center gap-2">
+					<span className="text-purple-500">[{new Date().toISOString().split('T')[1].slice(0,8)}]</span>
+					<span className={idx === step ? "text-slate-300" : "text-slate-500"}>{text}</span>
+					{idx === step && <span className="animate-pulse bg-slate-400 w-1.5 h-3 inline-block"></span>}
+				</div>
+			))}
+		</div>
+	);
+};
+
 export const TerminalMode: React.FC<TerminalModeProps> = ({ setIsCliMode, portofolioData, lang }) => {
 	const t = portofolioData[lang];
 	const [cwd, setCwd] = useState("C:\\Software\\Engineer\\kvinown");
@@ -554,12 +586,7 @@ export const TerminalMode: React.FC<TerminalModeProps> = ({ setIsCliMode, portof
 				</div>
 
 				{/* Show AI Fetching State */}
-				{isFetchingAI && (
-					<div className="mb-4 mt-1">
-						<span className="text-purple-400">KvinBot is thinking</span>
-						<span className="text-purple-400 animate-pulse">...</span>
-					</div>
-				)}
+				{isFetchingAI && <ThinkingProcess />}
 
 				{/* Currently Executing Command Output */}
 				{isExecuting && (
