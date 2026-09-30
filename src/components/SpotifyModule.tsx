@@ -94,7 +94,7 @@ export const SpotifyModule = ({ c }: { c: (l: string, d: string) => string }) =>
       {/* ==================================================== */}
       {/* 2. SPOTIFY WIDGET (Di pojok kiri bawah)              */}
       {/* ==================================================== */}
-      <div className={`fixed bottom-6 left-6 z-[9998] p-3 rounded-2xl flex items-center gap-3 backdrop-blur-xl border shadow-2xl transition-all duration-500 hover:scale-105 group cursor-default
+      <div className={`fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-[9998] p-2 sm:p-3 rounded-2xl flex items-center gap-2 sm:gap-3 backdrop-blur-xl border shadow-2xl transition-all duration-500 hover:scale-105 group cursor-default max-w-[calc(100vw-5rem)] sm:max-w-none origin-bottom-left scale-90 sm:scale-100
         ${c('bg-white/80 border-slate-200/50 text-slate-800', 'bg-slate-900/80 border-slate-700/50 text-slate-200')}`}
       >
         {isPlaying && data ? (

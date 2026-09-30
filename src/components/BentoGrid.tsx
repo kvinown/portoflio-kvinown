@@ -62,22 +62,22 @@ export const BentoGrid = ({ t, c, theme }: any) => {
 					</div>
 
 					{/* Box 5: Availability (Span full width) */}
-					<div className={`col-span-1 md:col-span-4 rounded-3xl p-6 md:p-8 flex items-center justify-between group cursor-pointer ${c("bg-white border border-slate-200 hover:border-blue-300 shadow-xl shadow-slate-200/50", "bg-slate-800/50 border border-slate-700 hover:border-blue-500")}`} onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
-						<div className="flex items-center gap-6">
-							<div className="relative flex h-6 w-6 shrink-0">
+					<div className={`col-span-1 md:col-span-4 rounded-3xl p-5 md:p-8 flex items-center justify-between group cursor-pointer ${c("bg-white border border-slate-200 hover:border-blue-300 shadow-xl shadow-slate-200/50", "bg-slate-800/50 border border-slate-700 hover:border-blue-500")}`} onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
+						<div className="flex items-start md:items-center gap-4 md:gap-6 w-full md:w-auto">
+							<div className="relative flex h-5 w-5 md:h-6 md:w-6 shrink-0 mt-1 md:mt-0">
 								<span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-								<span className="relative inline-flex rounded-full h-6 w-6 bg-green-500"></span>
+								<span className="relative inline-flex rounded-full h-5 w-5 md:h-6 md:w-6 bg-green-500"></span>
 							</div>
-							<div>
-								<h4 className={`text-xl md:text-2xl font-extrabold mb-1 group-hover:text-blue-500 transition-colors ${c("text-slate-900", "text-white")}`}>
+							<div className="flex-1">
+								<h4 className={`text-lg md:text-2xl font-extrabold mb-1 md:mb-2 group-hover:text-blue-500 transition-colors leading-tight ${c("text-slate-900", "text-white")}`}>
 									<TextAnimation text={t.bento?.available || "Available for New Opportunities"} />
 								</h4>
-								<p className={`font-medium text-sm md:text-base ${c("text-slate-500", "text-slate-400")}`}>
+								<p className={`font-medium text-xs md:text-base leading-relaxed ${c("text-slate-500", "text-slate-400")}`}>
 									{t.bento?.availableDesc || "Currently open for full-time roles, freelance, or interesting collaborations."}
 								</p>
 							</div>
 						</div>
-						<div className={`p-4 rounded-full transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12 ${c("bg-slate-100 text-slate-400 group-hover:bg-blue-50 group-hover:text-blue-500", "bg-slate-900 text-slate-500 group-hover:bg-slate-700 group-hover:text-blue-400")}`}>
+						<div className={`hidden md:flex p-4 rounded-full transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12 ${c("bg-slate-100 text-slate-400 group-hover:bg-blue-50 group-hover:text-blue-500", "bg-slate-900 text-slate-500 group-hover:bg-slate-700 group-hover:text-blue-400")}`}>
 							<Briefcase size={32} />
 						</div>
 					</div>
