@@ -3,7 +3,8 @@ import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
 import { DataNodesBackground } from "../animations/DataNodesBackground";
 import { ChatWidget } from "./ChatWidget";
-
+import { CommandPalette } from "./CommandPalette";
+import { SpotifyModule } from "./SpotifyModule";
 // Mendefinisikan props yang dibutuhkan Layout
 interface LayoutProps {
 	lang: "id" | "en";
@@ -39,6 +40,20 @@ export const Layout: React.FC<LayoutProps> = ({ lang, setLang, theme, setTheme, 
 
 			{/* RAG Chatbot Widget */}
 			<ChatWidget c={c} />
+			
+			{/* Command Palette (Ctrl+K) */}
+			<CommandPalette 
+				lang={lang} 
+				setLang={setLang} 
+				theme={theme} 
+				setTheme={setTheme} 
+				setIsCliMode={setIsCliMode} 
+				c={c} 
+				t={t} 
+			/>
+
+			{/* Spotify Widget & Ambient Glow */}
+			<SpotifyModule c={c} />
 		</div>
 	);
 };
